@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: blur(5px); /* Apply blur effect */
+            z-index: -1; /* Move behind other elements */
+        }
+
+        .form-container {
+            display: flex;
+            background-color: rgba(255, 255, 255, 0.9); /* Use rgba for background color with transparency */
+            border-radius: 1rem;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            width: 100%; /* Adjusted width */
+            padding: 1rem; /* Reduced padding */
+            z-index: 1; /* Move above background container */
+        }
+
+        .left-side {
+            flex: 4;
+            padding: 1rem;
+            background-size: cover;
+            background-position: center;
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .left-side img {
+            max-width: 100%; /* Ensure the image fits within the container */
+            max-height: 100%; /* Ensure the image fits within the container */
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+        }
+
+        .right-side {
+            flex: 5;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+       
+        .logo {
+            width: 150px;
+            height: auto;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-container h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+
+        .input-field {
+            border: 0.5px solid #FF6347;
+            border-radius: 0.5rem;
+            padding: 0.4rem;
+            margin-bottom: 0.75rem;
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-field:focus {
+            border-color: #FF6347;
+        }
+
+        .checkbox-label {
+            color: #555;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .checkbox-label input {
+            margin-right: 0.5rem;
+        }
+
+        .submit-btn {
+            background-color: #f97316;
+            color: #ffffff;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1.1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            display: block;
+        }
+
+        .submit-btn:hover {
+            background-color: #ed8936;
+        }
+
+        .signin-link {
+            color: #f97316;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .signin-link:hover {
+            color: #ed8936;
+        }
+        @media (max-width: 768px) {
+            .left-side {
+                display: none; /* Hide on smaller screens */
+            }
+            .right-side {
+                flex: 1; /* Occupy full width on smaller screens */
+            }
+            .input-field,
+            .submit-btn {
+                font-size: 0.9rem; /* Adjusted font size */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-container"></div>
+    <div class="form-container">
+        <div class="left-side">
+            <img src="../assets/images/admin_login.jpg" alt="Background Image">
+        </div>
+        <div class="right-side" id="signupForm">
+            <img src="../assets/images/logo/logo.png" alt="Logo" class="logo">
+            <div class="head"> <h2>Create Account</h2></div>
+            <form class="w-full max-w-lg"id="signupForm">
+                <div class="flex flex-wrap -mx-3 mb-3">
+                    <div class="w-full md:w-1/2 px-3 mb-4 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="first-name">First Name</label>
+                        <input class="appearance-none block w-full    text-gray-700 border rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="first-name" name="first-name" type="text" placeholder="John">
+                    </div>
+                    <div class="w-full md:w-1/2 px-3">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="last-name">Last Name</label>
+                        <input class="appearance-none block w-full    text-gray-700 border rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="last-name" name="last-name" type="text" placeholder="Doe">
+                    </div>
+                </div>
+                <div class="flex flex-wrap -mx-3 mb-3">
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="email">Email</label>
+                        <input class="appearance-none block w-full    text-gray-700 border rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" name="email" type="email" placeholder="john@example.com">
+                    </div>
+                    <div class="w-full md:w-1/2 px-3">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="contact-number">Contact Number</label>
+                        <input class="appearance-none block w-full    text-gray-700 border rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="contact-number" name="contact-number" type="tel" placeholder="123-456-7890">
+                    </div>
+                </div>
+                <div class="flex flex-wrap -mx-3 mb-3">
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="address">Address</label>
+                        <input class="appearance-none block w-full    text-gray-700 border rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="address" name="address" type="text" placeholder="123 Main St">
+                    </div>
+                    <div class="w-full md:w-1/2 px-3">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="dob">Date of Birth</label>
+                        <input class="appearance-none block w-full    text-gray-700 border rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="dob" name="dob" type="date" placeholder="MM/DD/YYYY">
+                    </div>
+                </div>
+                <div class="flex flex-wrap -mx-3 mb-3">
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="gender">Gender</label>
+                        <select class="appearance-none block w-full    text-gray-700 border rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="gender" name="gender">
+                            <option disabled selected>Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="w-full md:w-1/2 px-3">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="username">Username</label>
+                        <input class="appearance-none block w-full    text-gray-700 border rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="username" name="username" type="text" placeholder="johndoe">
+                    </div>
+                </div>
+                <div class="flex flex-wrap -mx-3 mb-3">
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="password">Password</label>
+                        <input class="appearance-none block w-full    text-gray-700 border rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="password" name="password" type="password" placeholder="********">
+                    </div>
+                    <div class="w-full md:w-1/2 px-3">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="confirm-password">Confirm Password</label>
+                        <input class="appearance-none block w-full    text-gray-700 border rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="confirm-password" name="confirm-password" type="password" placeholder="********">
+                    </div>
+                </div>
+                <div class="flex flex-wrap -mx-3 mb-3">
+                    <div class="w-full px-3">
+                        <input type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600" id="terms" name="terms">
+                        <label for="terms" class="ml-2 text-gray-700">I agree to terms and conditions</label>
+                    </div>
+                </div>
+                <button type="button" onclick="showShopDetailsForm()" class="submit-btn">Next</button>
+            </form>
+            <div class="text-center mt-2">
+                <p>Already have an account? <a href="./customer_signin.html" class="signin-link">Sign In</a></p>
+            </div>
+        </div>
+         <div class="right-side" id="shopDetailsForm" style="display: none;">
+            <img src="../assets/images/logo/logo.png" alt="Logo" class="logo">
+            <h2>Shop Details</h2>
+            <form class="w-full max-w-lg" id="shopForm">
+                <input type="text" id="shopName" name="shopName" placeholder="Shop Name" class="input-field">
+                <input type="text" id="location" name="location" placeholder="Location" class="input-field">
+                <input type="tel" id="shopContactNumber" name="shopContactNumber" placeholder="Contact Number" class="input-field">
+                <a href="../trader/home.html"><button type="button" onclick="submitForm()" class="submit-btn">Submit</button></a>
+            </form>
+            <div class="text-center mt-2">
+                <p>Already have an account? <a href="./customer_signin.html" class="signin-link">Sign In</a></p>
+            </div>
+        </div>
+    </div>
+       
+    </div>
+
+    <script>
+        function showShopDetailsForm() {
+          document.getElementById('signupForm').style.display = 'none';
+          document.getElementById('shopDetailsForm').style.display = 'block';
+        }
+      
+        function submitForm() {
+          // Here you can add JavaScript code to submit the form data
+          // For example, you can use AJAX to send the data to a server
+          alert('Form submitted successfully!');
+        }
+      </script>
+      
+
+</body>
+</html>
