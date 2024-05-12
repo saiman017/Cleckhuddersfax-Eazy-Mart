@@ -22,17 +22,17 @@
             </div>
                 <ul class="nav-link">
                     <li>
-                        <a href="../login/customer_signin.php"><img src="../assets/images/icons/person.png" alt="" id="topIcons">Login<i class="fa-solid fa-angle-down"></i></a>
+                        <a href="../Login_register/customer_signin.php"><img src="../assets/images/icons/person.png" alt="" id="topIcons">Login<i class="fa-solid fa-angle-down"></i></a>
                         <ul class="drop-menu">
-                            <li><a class="dropdown-item" href="../SignUp/customer_signup.php"><span id="head-signup">New Customer?</span>  Sign Up</a></li>
-                            <li><a class="dropdown-item" href="../login/customer_signin.php">Login</a></li>
+                            <li><a class="dropdown-item" href="../Login_register/customer_signup.php"><span id="head-signup">New Customer?</span>  Sign Up</a></li>
+                            <li><a class="dropdown-item" href="../Login_register/customer_signin.php">Login</a></li>
                             <li><a class="dropdown-item" href="profile.php">My Profile</a></li>
                             <li><a class="dropdown-item" href="order.php">My Order</a></li>
                             <li><a class="dropdown-item" href="wishlist">My Wishlist</a></li>
                         </ul>
                     </li>
                     <li><a href="#"><img src="../assets/images/icons/shopping-cart.png" id="topIcons" alt="">Cart</a></li>
-                    <li><a href="../SignUp/trader_signup.html"><img src="../assets/images/icons/store.png"  id="topIcons" alt="">Become a trader</a></li>
+                    <li><a href="../Login_register/trader_signup.php"><img src="../assets/images/icons/store.png"  id="topIcons" alt="">Become a trader</a></li>
                 </ul>
             </div>
 

@@ -36,7 +36,7 @@
       <li><a href="#">FAQ</a></li>
       <li><a href="#">Privacy Policy</a></li>
       <li><a href="#">Help</a></li>
-      <li><a href="#">Terms and Conditions</a></li>
+      <li><a href="../Support/Terms_and_conditions.php">Terms and Conditions</a></li>
     </ul>
   </div>
   <div class="sec contact">
