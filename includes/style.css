@@ -611,6 +611,57 @@ body {
   }
 }
 
+/* Role Selector */
+.login-container .input-field,
+.login-container select {
+  border: 0.5px solid #FF6347;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+  .login-container .left-side {
+      display: none; /* Hide on smaller screens */
+  }
+  .login-container .right-side {
+      flex: 1; /* Occupy full width on smaller screens */
+  }
+  .login-container .input-field,
+  .login-container select,
+  .submit-btn {
+      font-size: 0.9rem; /* Adjusted font size */
+  }
+}
+
+.login-container .remember-me {
+  margin-bottom: 0.5rem; /* Adjusted margin */
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.login-container .remember-me input[type="checkbox"] {
+  margin-right: 0.5rem; /* Adjusted margin */
+}
+
+.login-container .forget-link {
+  margin-left: auto; /* Push to the right */
+  color: #333; /* Adjusted color */
+  text-decoration: underline; /* Underline for emphasis */
+  cursor: pointer;
+  border: none; /* Show pointer on hover */
+}
+
+.login-container .forget-link:hover {
+  color: #f97316; /* Highlight color on hover */
+}
+
+
 
 
 /* Customer sign up */

@@ -72,7 +72,7 @@
                         </div>
                         <div class="w-full md:w-1/2 px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" >Confirm Password</label>
-                            <input class="appearance-none block w-full    text-gray-700 border rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="confirm-password" name="confirm-password" type="password" placeholder="">
+                            <input class="appearance-none block w-full    text-gray-700 border rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="confirm-password" name="cpassword" type="password" placeholder="">
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-3">
