@@ -34,7 +34,8 @@
         </div>
         <div class="right-container">
             <h2>Contact Us</h2>
-            <form id="contact-form">
+            <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="989f27e1-a22e-416b-b3d0-79fef50fbf77">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
                 <label for="email">Email:</label>

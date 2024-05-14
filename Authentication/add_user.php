@@ -25,6 +25,10 @@ if(isset($_POST['submit']))
     // Get the current date and time
     $registry = date('d-M-Y');
 
+
+    // Check if email exists or 
+    
+
     // Build the SQL query with proper quoting
     $query = "INSERT INTO Customer (First_Name, Last_Name, Contact_Number, Address, Date_of_Birth, Gender, Email, Register_Date, Username, Password, Profile_Image) 
     VALUES ('$fname', '$lname', '$number', '$address', TO_DATE('$dateOfBirth', 'YYYY-MM-DD'), '$gender', '$email', SYSDATE, '$Uname', '$password', null)";
