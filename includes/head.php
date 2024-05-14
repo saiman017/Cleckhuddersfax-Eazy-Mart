@@ -11,7 +11,7 @@
     <header>
         <nav id="up-nav">
             <div class="wapper">
-                <div class="logo"><a href="./homepage.php"></a><img src="../assets/images/icons/logo.png" alt="" id="logo"></div>
+                <div class="logo"><a href="../index.php"><img src="../assets/images/icons/logo.png" alt="" id="logo"></a></div>
                 <div class="search">
                     <form action="#">
                         <input type="text" placeholder="&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Search product....." name="search">
@@ -21,18 +21,18 @@
                     </form>
             </div>
                 <ul class="nav-link">
-                    <li>
-                        <a href="../Login_register/customer_signin.php"><img src="../assets/images/icons/person.png" alt="" id="topIcons">Login<i class="fa-solid fa-angle-down"></i></a>
+                    <li class="nav-link-item">
+                        <a href="../Login/customer_signin.php"><img src="../assets/images/icons/person.png" alt="" id="topIcons">Login<i class="fa-solid fa-angle-down"></i></a>
                         <ul class="drop-menu">
-                            <li><a class="dropdown-item" href="../Login_register/customer_signup.php"><span id="head-signup">New Customer?</span>  Sign Up</a></li>
-                            <li><a class="dropdown-item" href="../Login_register/customer_signin.php">Login</a></li>
-                            <li><a class="dropdown-item" href="profile.php">My Profile</a></li>
-                            <li><a class="dropdown-item" href="order.php">My Order</a></li>
-                            <li><a class="dropdown-item" href="wishlist">My Wishlist</a></li>
+                            <li><a class="dropdown-item" href="../Sign Up/customer_signup.php"><span id="head-signup">New Customer?</span>  Sign Up</a></li>
+                            <li><a class="dropdown-item" href="../Login/customer_signin.php">Login</a></li>
+                            <li><a class="dropdown-item" href="../Customer profile/customer_profile.php">My Profile</a></li>
+                            <li><a class="dropdown-item" href="../Customer profile/customer_order.php">My Orders</a></li>
+                            <li><a class="dropdown-item" href="../Customer profile/#">My Wishlist</a></li>
                         </ul>
                     </li>
-                    <li><a href="#"><img src="../assets/images/icons/shopping-cart.png" id="topIcons" alt="">Cart</a></li>
-                    <li><a href="../Login_register/trader_signup.php"><img src="../assets/images/icons/store.png"  id="topIcons" alt="">Become a trader</a></li>
+                    <li class="nav-link-item"><a href="../Customer profile/Customer_cart.php"><img src="../assets/images/icons/shopping-cart.png" id="topIcons" alt="">Cart</a></li>
+                    <li class="nav-link-item"><a href="../Sign Up/trader_signup.php"><img src="../assets/images/icons/store.png"  id="topIcons" alt="">Become a trader</a></li>
                 </ul>
             </div>
 
@@ -40,19 +40,22 @@
             <div class="wapper2">
                 <div>
                     <ul class="nav-links">
-                        <li><a href="#">HOME</a></li>
+                        <li><a href="../index.php">HOME</a></li>
                         <li><a href="#">ABOUT US</a></li>
                         <li>
-                            <a href="#">SHOP</a>
-                            <ul class="drop-menu">
-                                <li><a class="dropdown-item" href="#">Buchters</a></li>
+                            <a href="../includes/homepage.php#feature-sho" id="topIcons">SHOP</a>
+                            <ul class="drop-menu" >
+                                <li><a class="dropdown-item" href="../Shop_category/buchters_category.php">Buchters</a></li>
                                 <li><a class="dropdown-item" href="#">Greengrocers</a></li>
                                 <li><a class="dropdown-item" href="#">Fishmongers</a></li>
                                 <li><a class="dropdown-item" href="#">Bakeries</a></li>
                                 <li><a class="dropdown-item" href="#">Delicatessens</a></li>
                             </ul>
+                            <li class="nav-link-item">
+                       
+                    </li>
                         </li>
-                        <li><a href="#">CONTACT US</a></li>
+                        <li><a href="../contactUs/contactus.php">CONTACT US</a></li>
                     </ul>
                 </div>
             </div>

@@ -898,3 +898,76 @@ body {
 .terms_conditions_container{
   padding: 40px 240px;
 }
+
+
+/* Add Shop  */
+
+.add-shop {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+  flex-direction: column; /* Added to stack items vertically */
+}
+
+.add-shop .right-side {
+          width: 100%;
+          max-width: 600px; /* Adjust as needed */
+          padding: 20px;
+          background-color: #ffffff;
+          border-radius: 2rem;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      }
+
+
+      .add-shop h2 {
+          font-size: 1.5rem;
+          font-weight: bold;
+          margin-bottom: 20px;
+      }
+
+      .add-shop .shop-form {
+          margin-top: 20px;
+      }
+
+      .add-shop .input-field {
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 15px;
+          border: 1px solid #d1d5db;
+          border-radius: 0.5rem;
+          background-color: #f3f4f6;
+      }
+
+      .add-shop .submit-btn {
+        width: 200px; /* Adjust width as needed */
+        background-color: #ffb66d;
+        color: #ffffff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin: 0 auto; /* Center the button horizontally */
+        display: block; /* Ensure button occupies full width of its container */
+    }
+
+      .add-shop .submit-btn:hover {
+          background-color: #ff9170;
+      }
+
+
+
+      .add-shop .logo-link {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  margin-bottom: 20px;
+}
+
+.add-shop .logo {
+  width: 150px;
+  height: auto;
+  margin-bottom: 0.5rem;
+  }
