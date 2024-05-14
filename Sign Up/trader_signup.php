@@ -28,7 +28,7 @@
             <div class="right-side" id="signupForm">
                 <a href="../includes/homepage.php"><img src="../assets/images/icons/logo.png" alt="Logo" class="logo"></a>
                 <div class="head"> <h2>Create Account</h2></div>
-                <form class="w-full max-w-lg" id="signupForm" >
+                <form class="w-full max-w-lg" id="signupForm" method="post" action="../Authentication/add_trader.php">
                     <div class="flex flex-wrap -mx-3 mb-3">
                         <div class="w-full md:w-1/2 px-3 mb-4 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="first-name">First Name</label>
@@ -81,7 +81,7 @@
                     </div>
                     <div class="w-full md:w-1/2 px-3">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="confirm-password">Confirm Password</label>
-                        <input class="appearance-none block w-full    text-gray-700 border rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="confirm-password" name="confirm-password" type="password" placeholder="">
+                        <input class="appearance-none block w-full    text-gray-700 border rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="confirm-password" name="cpassword" type="password" placeholder="">
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 mb-3">
