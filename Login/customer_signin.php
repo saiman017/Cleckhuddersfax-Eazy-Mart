@@ -1,4 +1,12 @@
+<?php
+// Display error message if it exists
+$error = '';
+if (isset($_SESSION['error'])) {
+    $error = $_SESSION['error'];
+    unset($_SESSION['error']); // Clear the error after displaying it
+}
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
