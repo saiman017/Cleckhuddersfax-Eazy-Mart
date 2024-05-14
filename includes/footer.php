@@ -27,15 +27,13 @@
       <li><a href="#">Home</a></li>
       <li><a href="#">About us</a></li>
       <li><a href="#">Shop</a></li>
-      <li><a href="#">Contact us</a></li>
+      <li><a href="../contactUs/contactus.php">Contact us</a></li>
     </ul>
   </div>
   <div class="sec quickLinks">
     <h2>Support</h2>
     <ul>
       <li><a href="#">FAQ</a></li>
-      <li><a href="#">Privacy Policy</a></li>
-      <li><a href="#">Help</a></li>
       <li><a href="../Support/Terms_and_conditions.php">Terms and Conditions</a></li>
     </ul>
   </div>

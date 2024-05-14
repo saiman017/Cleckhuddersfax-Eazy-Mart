@@ -56,7 +56,7 @@
         <div class="right-side">
             <a href="../index.php"><img src="../assets/images/icons/logo.png" alt="Logo" class="logo"></a>
             <h2>Login</h2>
-            <form action="loginAuthentication.php" method="post">
+            <form action="../Authentication/loginAuthentication.php" method="post">
                 <span>Username/Email</span>
                 <input type="email" id="email" name="email" placeholder="Username/Email" class="input-field">
                 <span>Password</span>
@@ -64,7 +64,7 @@
                 <button type="submit" class="submit-btn" name="login">Login</button>
             </form>
             <div class="text-center mt-4">
-                <p>Don't have an account? <a href="Login_register/customer_signup.php" class="signin-link">Sign Up</a></p>
+                <p>Don't have an account? <a href="../Sign Up/customer_signup.php" class="signin-link">Sign Up</a></p>
             </div>
         </div>
     </div>

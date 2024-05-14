@@ -21,10 +21,10 @@
         <div class="right-side" id="signupForm">
             <a href="../includes/homepage.php"><img src="../assets/images/icons/logo.png" alt="Logo" class="logo"></a>
             <div class="head"> <h2>Create Account</h2></div>
-            <form class="w-full max-w-lg"id="signupForm">
+            <form class="w-full max-w-lg"id="signupForm" action="add_trader.php" method="post">
                 <div class="flex flex-wrap -mx-3 mb-3">
                     <div class="w-full md:w-1/2 px-3 mb-4 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="first-name"></label>
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="first-name">First Name</label>
                         <input class="appearance-none block w-full    text-gray-700 border rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="first-name" name="first-name" type="text" placeholder="">
                     </div>
                     <div class="w-full md:w-1/2 px-3">
@@ -55,11 +55,11 @@
                 <div class="flex flex-wrap -mx-3 mb-3">
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="gender">Gender</label>
-                        <select class="appearance-none block w-full    text-gray-700 border rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="gender" name="">
+                        <select class="appearance-none block w-full text-gray-700 border rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="gender" name="gender">
                             <option disabled selected>Select Gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
                     <div class="w-full md:w-1/2 px-3">
@@ -83,13 +83,14 @@
                         <label for="terms" class="ml-2 text-gray-700">I agree to terms and conditions</label>
                     </div>
                 </div>
-                <button type="button" onclick="showShopDetailsForm()" class="submit-btn">Next</button>
+                <button type="submit" name="submit" class="submit-btn">Next</button>
+
             </form>
             <div class="text-center mt-2">
                 <p>Already have an account? <a href="../login/customer_signin.php" class="signin-link">Sign In</a></p>
             </div>
         </div>
-         <div class="right-side" id="shopDetailsForm" style="display: none;">
+         <!-- <div class="right-side" id="shopDetailsForm" style="display: none;">
             <a href="../includes/homepage.php"><img src="../assets/images/icons/logo.png" alt="Logo" class="logo"></a>
             <h2>Shop Details</h2>
             <form class="w-full max-w-lg" id="shopForm">
@@ -98,7 +99,7 @@
                 <input type="tel" id="shopContactNumber" name="shopContactNumber" placeholder="Contact Number" class="input-field">
                 <a href="../trader/home.html"><button type="button" onclick="submitForm()" class="submit-btn">Submit</button></a>
             </form>
-        </div>
+        </div> -->
     </div>
        
     </div>

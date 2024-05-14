@@ -1,16 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    outline: none;
-    font-family: "Poppins", sans-serif;
-  }
 
-body {
-    background-color: white;
-    overflow-x: hidden;
-    margin: 0;
-  }
   
 
 #up-nav{
@@ -36,6 +24,12 @@ body {
 
 #up-nav .wapper .nav-link{
     display: inline-flex;
+
+}
+.nav-link-item{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
 }
 #up-nav .wapper .nav-link li{
@@ -94,30 +88,36 @@ body {
 }
 
 /* serach bar */
-.search input[type=text] {
-    width: 500px;
-    height: 35px;
-    border-radius: 25px;
-    border: none;
+.search {
+    flex: 2;
+    margin: 0 20px;
 }
 
+.search form {
+    display: flex;
+    align-items: center;
+}
 
+.search input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
 
 .search button {
-    height: 37px;
-    background-color: #212529;
     color: white;
-    width: 17px;
-    font-size: 20px;
+    background-color: transparent;
     border: none;
     cursor: pointer;
+    padding: 10px;
 }
-
 #up-nav .wapper .nav-link #topIcons{
     width: 27px;
     align-items: center;
     align-content: center;
     margin-top: 17px;
+   
 }
 
 .wapper .nav-link li:hover .drop-menu{
@@ -223,18 +223,4 @@ body {
     padding: 0 20px;
     font-weight: 400;
     border-radius: 0px;
-}
-
-
-@media (max_width:1162) {
-    #up-nav .wapper {
-        width: 100%;
-        padding: 0 30px;
-        /* margin: auto; */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0 50px;
-    }
-    
 }

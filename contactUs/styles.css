@@ -1,0 +1,114 @@
+/* Container Styles */
+.contactus-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    margin-top: 150px;
+    margin-bottom: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: aliceblue;
+}
+
+/* Left Container Styles */
+.contactus-container .left-container {
+    flex: 1;
+    text-align: center;
+    background-color: grey;
+    width: 100%;
+    margin-bottom: 20px; /* Space between containers */
+    margin-right: 10px;
+}
+
+.contactus-container .left-container img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.contactus-container .left-container h2 {
+    margin: 10px 0;
+}
+
+.contactus-container .left-container p {
+    margin: 10px 0;
+}
+
+/* Right Container Styles */
+.contactus-container .right-container {
+    flex: 1;
+    width: 45%;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+/* Form Styles */
+.contactus-container form {
+    margin-top: 20px;
+}
+
+.contactus-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.contactus-container input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 80%;
+}
+
+/* Social Media Icons Styles (Replace with your own icons) */
+.contactus-container .social-icons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.contactus-container .social-icons a {
+    margin: 0 5px;
+}
+
+/* Submit Button Styles */
+.contactus-container input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 20px 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 25%;
+}
+
+.contactus-container input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.contactus-container input[type="submit"]:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Media Queries */
+@media only screen and (max-width: 768px) {
+    .contactus-container {
+        flex-direction: column;
+    }
+    
+    .contactus-container .left-container,
+    .right-container {
+        width: 100%;
+    }
+    
+    .contactus-container .right-container {
+        margin-left: 0; /* Reset margin for right container */
+    }
+}
+
+    

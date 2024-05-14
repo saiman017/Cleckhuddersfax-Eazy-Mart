@@ -19,7 +19,7 @@
             <div class="right-side">
                 <a href="../index.php"><img src="../assets/images/icons/logo.png" alt="Logo" class="logo"></a>
                 <h2>Create Account</h2>
-                <form class="w-full max-w-lg" action="./add_user.php" method="post">
+                <form class="w-full max-w-lg" action="../Authentication/add_user.php" method="post">
                     <div class="flex flex-wrap -mx-3 mb-3">
                         <div class="w-full md:w-1/2 px-3 mb-4 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" >First Name</label>
@@ -55,9 +55,9 @@
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1">Gender</label>
                             <select class="appearance-none block w-full    text-gray-700 border rounded py-2 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="gender" name="gender">
                                 <option disabled selected>Select Gender</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="other">Other</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
                             </select>
                         </div>
                         <div class="w-full md:w-1/2 px-3">
@@ -82,10 +82,10 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="submit-btn">Sign Up</button>
+                    <button type="submit" name="submit" class="submit-btn">Sign Up</button>
                 </form>
                 <div class="text-center mt-2">
-                    <p>Already have an account?  <a href="../login/customer_signin.php" class="signin-link">Sign In</a></p>
+                    <p>Already have an account?  <a href="../Login/customer_signin.php" class="signin-link">Sign In</a></p>
                 </div>
             </div>
         </div>
