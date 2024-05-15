@@ -1,88 +1,133 @@
+
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Trader Dashboard</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+        <!-- Include Tailwind CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="trader.css">
+  </head>
+  <body>
+    <div class="">
+    <div class="grid-container">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <!-- Include Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Include custom CSS -->
-    <link rel="stylesheet" type="text/css" href="home.css">
-    
-</head>
+<header class="header">
+<div class="menu-icon">
+<span class="material-icons-outlined">menu</span>
+</div>
+<div class="search-bar">
+<input type="text" placeholder="Search...">
+</div>
+<div class="profile-section">
+<div class="profile-image">
+  <img src="../assets/images/Shop/butcher 1.jpg" alt="Profile Image">
+</div>
+<div class="profile-name">Profile</div>
+</div>
+</header>
 
-<body>
-    <div class="container mx-auto py-8 px-4">
-        <div class="max-w-7xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
-            <!-- Profile Header -->
-            <div class="bg-gradient text-center py-8">
-                <img src="https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Profile Picture" class="w-32 h-32 rounded-full mx-auto border-4 profile-pic">
-                <h2 class="text-header text-white mt-4">John Doe</h2>
-                <p class="text-subheader text-white">Username: johndoe123</p>
-            </div>
-            <!-- Profile Information -->
-            <div class="p-6 info-box">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Personal Information</h3>
-                        <ul class="text-content text-gray-700">
-                            <li><span class="font-semibold">Name:</span> John Doe</li>
-                            <li><span class="font-semibold">Email:</span> johndoe@example.com</li>
-                            <li><span class="font-semibold">Contact Number:</span> 123-456-7890</li>
-                            <li><span class="font-semibold">Address:</span> 123 Main St, City, Country</li>
-                            <li><span class="font-semibold">Date of Birth:</span> January 1, 1990</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Account Information</h3>
-                        <ul class="text-content text-gray-700">
-                            <li><span class="font-semibold">Username:</span> johndoe123</li>
-                            <li><span class="font-semibold">Register Date:</span> January 1, 2022</li>
-                            <li><span class="font-semibold">Password:</span> **********</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+ <!-- Sidebar -->
+<aside id="sidebar">
+<div class="sidebar-title">
+<div class="sidebar-brand">
+  <a href="./trader_dashboard.php"><img src="../assets/images/icons/logo.png" alt=""></a>
+</div>
+</div>
+
+<ul class="sidebar-list">
+<li class="sidebar-list-item">
+  <a href="./trader_dashboard.php">
+    <span class="material-icons-outlined">dashboard</span> Dashboard
+  </a>
+</li>
+<li class="sidebar-list-item">
+<a href="#">
+<span class="material-icons-outlined">leaderboard</span> Report
+</a>
+<ul class="submenu">
+<li><a href="#">Report 1</a></li>
+<li><a href="#">Report 2</a></li>
+<li><a href="#">Report 3</a></li>
+</ul>
+</li>
+<li class="sidebar-list-item">
+  <a href="./trader_profile.php">
+   <img src="#" alt=""> My Profile
+  </a>
+</li>
+<li class="sidebar-list-item">
+  <a href="#">
+   <img src="/trader/view_product_detail.php" alt=""> Product Detail
+  </a>
+</li>
+<li class="sidebar-list-item">
+  <a href="#">
+   <img src="#" alt=""> Shop Detail
+  </a>
+</li>
+</ul>
+
+<!-- Logout Button -->
+<div class="logout-button">
+<button>Logout</button>
+</div>
+</aside>
+<!-- End Sidebar -->
+
+
+  <!-- Main -->
+  <main class="main-container">
+    <div class="main-title">
+      <h2>Product Detail</h2>
     </div>
-
     <!-- Product CRUD View -->
-    <div class="container mx-auto py-8 px-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <h2 class="text-2xl font-semibold text-gray-800">Your Products</h2>
-            <button id="addProductBtn" class="addbg-gradient-to-r from-purple-500 to-indigo-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-gradient bg-gradient transition duration-300">Add Product</button>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 product-list">
-            <!-- Product Card -->
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Product Image">
-                <div class="product-info p-4">
-                    <h3 class="text-lg font-semibold text-gray-800">Product Name</h3>
-                    <p class="text-sm text-gray-600 mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <p class="text-sm text-gray-600 mt-2">Price: $10</p>
-                    <p class="text-sm text-gray-600 mt-2">Stock: 100</p>
-                    <p class="text-sm text-gray-600 mt-2">Upload Date: January 1, 2022</p>
-                </div>
-                <div class="product-actions flex justify-between items-center">
-                    <button class="text-xs text-gray-600 hover:text-indigo-600 transition duration-300 view-btn">View</button>
-                    <button class="text-xs text-gray-600 hover:text-indigo-600 transition duration-300 edit-btn">Edit</button>
-                    <button class="text-xs text-red-600 hover:text-red-700 transition duration-300">Delete</button>
-                </div>
+<div class="container mx-auto py-8 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <h2 class="text-2xl font-bold text-gray-800">Your Products</h2>
+        <button id="addProductBtn" class="addbg-gradient-to-r from-purple-500 to-indigo-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-gradient bg-gradient transition duration-300">Add Product</button>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 product-list">
+        <!-- Product Card -->
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Product Image">
+            <div class="product-info p-4">
+                <h3 class="text-lg font-semibold text-gray-800">Product Name</h3>
+                <p class="text-sm text-gray-600 mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p class="text-sm text-gray-600 mt-2">Price: $10</p>
+                <p class="text-sm text-gray-600 mt-2">Stock: 100</p>
+                <p class="text-sm text-gray-600 mt-2">Upload Date: January 1, 2022</p>
             </div>
-            <!-- Repeat product cards here -->
+            <div class="product-actions flex justify-between items-center">
+                <button class="text-xs text-gray-600 hover:text-indigo-600 transition duration-300 view-btn">View</button>
+                <button class="text-xs text-gray-600 hover:text-indigo-600 transition duration-300 edit-btn">Edit</button>
+                <button class="text-xs text-red-600 hover:text-red-700 transition duration-300">Delete</button>
+            </div>
         </div>
+        <!-- Repeat product cards here -->
     </div>
+</div>
 
-    <!-- Product Modal -->
-    <div id="productModal" class="modal">
-        <div class="modal-content bg-white">
-            <span class="close">&times;</span>
-            <div id="productFormContainer"></div>
-        </div>
+<!-- Product Modal -->
+<div id="productModal" class="modal">
+    <div class="modal-content bg-white">
+        <span class="close">&times;</span>
+        <div id="productFormContainer"></div>
     </div>
+</div>
 
-    <script>
+  </main>
+</div>
+
+    </div>
+    
+
+  </body>
+  <script>
         // Get the modal
         var modal = document.getElementById("productModal");
 
@@ -282,6 +327,6 @@ function showViewProductForm(productData) {
 
     </script>
 
-</body>
-
 </html>
+
+

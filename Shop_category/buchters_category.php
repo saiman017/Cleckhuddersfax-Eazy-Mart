@@ -44,6 +44,7 @@
                 </ul>
             </div>
         </section>
+        
 
         <!-- index.php or any other parent file -->
 <section class="product-cards">
