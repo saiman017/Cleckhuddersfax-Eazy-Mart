@@ -1,6 +1,9 @@
 <?php
 // Display error message if it exists
+<<<<<<< HEAD
 session_start();
+=======
+>>>>>>> origin/alpha
 $error = '';
 if (isset($_SESSION['error'])) {
     $error = $_SESSION['error'];
