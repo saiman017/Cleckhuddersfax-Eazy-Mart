@@ -1,5 +1,5 @@
 <?php 
-require_once '../middlewares/checkAuthentication.php';
+
 include '../messages/notifications.php';
 
 list($error,$notification)=flashNotification();

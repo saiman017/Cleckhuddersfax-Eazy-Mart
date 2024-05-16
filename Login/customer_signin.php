@@ -1,12 +1,16 @@
 <?php 
-require_once '../middlewares/checkAuthentication.php';
+
 include '../messages/notifications.php';
 
 list($error,$notification)=flashNotification();
 
 
 // Check if the user is logged in
-checkIfUserIsLoggedIn();
+// Check if the user is logged in
+if(isset($_SESSION['user'])){
+    header("Location: ../index.php");
+}
+
 
 ?>
 
