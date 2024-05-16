@@ -1,7 +1,12 @@
 <?php 
+require_once '../middlewares/checkAuthentication.php';
 include '../messages/notifications.php';
 
 list($error,$notification)=flashNotification();
+
+
+// Check if the user is logged in
+checkIfUserIsLoggedIn();
 
 ?>
 
@@ -28,7 +33,6 @@ list($error,$notification)=flashNotification();
 if($error): ?>
 <div class="alert alert-danger" role="alert">
 <?php  echo $error; ?>
-<?php echo "error";?>
 </div>
 <?php endif; ?>
     <div class="form-container">
