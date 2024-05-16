@@ -52,7 +52,7 @@ session_start()
                                 </li>
                                 <li><a class="dropdown-item" href="../Customer/customer_order.php">My Orders</a>
                                 </li>
-                                <li><a class="dropdown-item" href="../Customer/#">My Wishlist</a></li>
+                                <li><a class="dropdown-item" href="../Customer/Wishlist.php">My Wishlist</a></li>
                                 <li><a class="dropdown-item" href="../Authentication/logout.php">Logout</a></li>
                                 <?php endif; ?>
 

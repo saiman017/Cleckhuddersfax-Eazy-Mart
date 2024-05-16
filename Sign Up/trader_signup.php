@@ -6,8 +6,8 @@ list($error,$notification)=flashNotification();
 
 
 // Check if the user is logged in
-if(isset($_SESSION['user'])){
-    header("Location: ../index.php");
+if(!isset($_SESSION['user'])){
+    header("Location: ../Login/customer_signin.php");
 }
 
 ?>
@@ -146,7 +146,7 @@ if($error): ?>
                         class="submit-btn">Next</button>
                 </form>
                 <div class="text-center mt-2">
-                    <p>Already have an account? <a href="../login/customer_signin.php" class="signin-link">Sign In</a>
+                    <p>Let's Go Back<a href="../index.php" class="signin-link">Homepage</a>
                     </p>
                 </div>
             </div>
