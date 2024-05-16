@@ -1,4 +1,13 @@
+<?php
+// Display error message if it exists
+session_start();
+$error = '';
+if (isset($_SESSION['error'])) {
+    $error = $_SESSION['error'];
+    unset($_SESSION['error']); // Clear the error after displaying it
+}
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +19,9 @@
     <link rel="shortcut icon" href="../assets/images/icons/logo.png" type="image/x-icon">
 </head>
 <body>
-
+<?php if ($error): ?>
+        <p style="color:red;"><?php echo htmlspecialchars($error); ?></p>
+    <?php endif; ?>
 <div class="login-container">
     <div class="form-container">
         <div class="left-side">
@@ -20,13 +31,6 @@
             <a href="../index.php"><img src="../assets/images/icons/logo.png" alt="Logo" class="logo"></a>
             <h2>Login</h2>
             <form action="../Authentication/loginAuthentication.php" method="post">
-                <?php 
-                if (isset($error)){
-                    foreach($error as $error){
-                        echo '<sapn class="error-msg">' .$error.'</span>';
-                    };  
-                };
-                ?>
                 <span>Username/Email</span>
                 <input type="text" id="email" name="email_username" placeholder="Username/Email" class="input-field">
                 <span>Password</span>

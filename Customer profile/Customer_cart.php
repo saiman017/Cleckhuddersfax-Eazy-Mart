@@ -1,3 +1,13 @@
+<?php
+require_once '../middlewares/check_authentication&authorization.php';
+
+// Check if the user is logged in
+checkIfLoggedIn();
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
