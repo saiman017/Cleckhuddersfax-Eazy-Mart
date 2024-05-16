@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conn = oci_connect('saiman', 'Stha_12', '//localhost/xe');
+$conn = oci_connect("c##saiman', 'Stha_12', '//192.168.1.69/XE'");
 if (!$conn) {
     $m = oci_error();
     echo $m['message'], "\n";
@@ -20,7 +20,6 @@ if (isset($_POST['login'])) {
     } elseif ($role == 'admin') {
         $query = "SELECT * FROM Management WHERE  Email = :email OR Username = :username ";
     } else {
-        
         echo '<script>alert("Invalid role selected.");</script>';
         exit();
     }
@@ -37,7 +36,9 @@ if (isset($_POST['login'])) {
     $user = oci_fetch_assoc($statement);
 
     if ($user) {
-        // Verify password
+        //verify email
+        if ($user['EMAIL_USERNAME'] === $email_username){
+        // Then Verify password
         if ($user['PASSWORD'] === $password) {
             // if Authentication successful
             $_SESSION['user'] = $user; 
@@ -53,11 +54,16 @@ if (isset($_POST['login'])) {
             exit(); // Make sure to exit after redirection
         } else {
             // Password doesn't match
-            echo '<script>alert("Incorrect password. Please try again.";</script>';
+            $_SESSION['error'] = "wrong password please type correct password";
+            // echo '<script>alert("Incorrect password. Please try again.";</script>';
+        }
+        }else{
+            $_SESSION['error'] = "email not found please provide correct email address";
         }
     } else {
         // User not found
-        echo '<script>alert("User not found. Please register or check your email.");</script>';
+        // echo '<script>alert("User not found. Please register or check your email.");</script>';
+        $_SESSION['error'] = "User Data not found";
     }
 
     oci_close($conn);

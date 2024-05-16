@@ -1,5 +1,6 @@
 <?php
-$conn = oci_connect('saiman', 'Stha_12', '//localhost/xe');
+// Establish connection
+$conn = oci_connect('c##saiman', 'Stha_12', '//192.168.1.69/XE');
 if (!$conn) {
     $m = oci_error();
     echo $m['message'], "\n";
