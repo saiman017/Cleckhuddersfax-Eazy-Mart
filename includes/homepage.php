@@ -1,44 +1,39 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <title>index page</title>
-  <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./footer.css">
     <link rel="stylesheet" href="./header.css">
 
 </head>
 <style>
-      /* Responsive Styles */
-    /* CSS for home section */
+
     .home {
-      position: relative; /* Set position to relative for containing block */
+      position: relative; 
     }
 
-    /* CSS for image within home section */
+    
     .home .img img {
-      width: 100%; /* Make image cover full width */
-      height: 50vh; /* Set image height to half of screen height */
-      object-fit: cover; /* Ensure image covers the entire container */
+      width: 100%; 
+      height: 50vh; 
+      object-fit: cover; 
     }
 
-    /* CSS for content within home section */
+ 
     .home .content {
-      position: absolute; /* Set position to absolute for overlapping content */
-      top: 50%; /* Align content to center vertically */
-      left: 5%; /* Adjust left position */
-      transform: translateY(-50%); /* Adjust position to center vertically */
-      text-align: left; /* Align text to the left */
-      color: #000; /* Set text color to white */
-      z-index: 1; /* Set z-index to ensure content is above image */
-      max-width: 40%; /* Limit content width */
+      position: absolute; 
+      top: 50%; 
+      left: 5%; 
+      transform: translateY(-50%); 
+      text-align: left; 
+      color: #000; 
+      z-index: 1; 
+      max-width: 40%; 
     }
 
-    /* Button styling */
+
     .home .content .btn {
       margin-top: 20px;
     }
@@ -58,12 +53,12 @@
       background-color: #ff8c66;
     }
 
-    /* Media query for responsiveness */
+  
     @media screen and (max-width: 768px) {
       .home .content {
-        left: 50%; /* Center content horizontally */
-        transform: translate(-50%, -50%); /* Adjust position to center */
-        max-width: 80%; /* Adjust max-width for smaller screens */
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+        max-width: 80%; 
       }
     }
 
@@ -92,19 +87,13 @@
 #feature-product2{
   padding: 16px 28px ;
 }
-    /* CSS Styles for #feature-shop */
+   
 
 
 </style>
 <body>
 
 <div><?php include('head.php');?></div>
-
-<!-- <div class="banner">
-  <img src="../assets/images/products/fruits.png"  alt="">
-</div> -->
-
-    <!-- home content -->
     <section class="home">
   <div class="img">
     <img src="../assets/images/FriutBanner.jpg" alt="Fresh fruits">
@@ -118,8 +107,6 @@
     <div class="btn"><button>Shop Now</button></div>
   </div>
 </section>
-
-
 
   <section id="feature-shop" class="section-p1">
   <h2>Featured Shops</h2>

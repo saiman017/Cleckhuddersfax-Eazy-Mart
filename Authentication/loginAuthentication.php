@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conn = oci_connect('c##saiman', 'Stha_12', '//192.168.1.69/XE');
+$conn = oci_connect('saiman', 'Stha_12', '//localhost/xe');
 if (!$conn) {
     $m = oci_error();
     $_SESSION['error']= $m['message'];
