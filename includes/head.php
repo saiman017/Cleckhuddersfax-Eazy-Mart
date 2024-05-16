@@ -47,12 +47,12 @@ session_start()
 
                                 <?php else: ?>
 
-                                <li><a class="dropdown-item" href="../Customer profile/customer_profile.php">My
+                                <li><a class="dropdown-item" href="../Customer/customer_profile.php">My
                                         Profile</a>
                                 </li>
-                                <li><a class="dropdown-item" href="../Customer profile/customer_order.php">My Orders</a>
+                                <li><a class="dropdown-item" href="../Customer/customer_order.php">My Orders</a>
                                 </li>
-                                <li><a class="dropdown-item" href="../Customer profile/#">My Wishlist</a></li>
+                                <li><a class="dropdown-item" href="../Customer/#">My Wishlist</a></li>
                                 <li><a class="dropdown-item" href="../Authentication/logout.php">Logout</a></li>
                                 <?php endif; ?>
 
