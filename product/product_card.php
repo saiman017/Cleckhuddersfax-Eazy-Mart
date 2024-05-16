@@ -1,17 +1,17 @@
 
 <style>
   .product-card {
-    flex: 0 0 calc(20% - 16px); /* Calculate width for 5 cards in a row with spacing */
-    margin-bottom: 20px; /* Add bottom margin to create space between rows */
-    margin: 20px auto; /* Center the card horizontally */
+    flex: 0 0 calc(20% - 16px); 
+    margin-bottom: 20px; 
+    margin: 20px auto; 
     padding: 10px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     position: relative;
-    max-width: 300px; /* Limit card width */
-    width: 100%; /* Ensure card fills available width */
+    max-width: 300px; 
+    width: 100%; 
 }
 
 .product-card:hover {
@@ -64,20 +64,18 @@
     color: #fdd835;
 }
 .product-card a {
-    color: inherit; /* Inherit text color from parent */
-    text-decoration: none; /* Remove underline */
-    cursor: pointer; /* Change cursor to pointer on hover */
+    color: inherit; 
+    text-decoration: none; 
+    cursor: pointer; 
   }
 
 </style>
-<!-- product_card.php -->
-<!-- product_card.php -->
+
 <div class="product-card">
-    <a href="product_detail.php">
+    <a href="../product/product_detail.php">
         <img src="<?php echo $productImage; ?>" alt="<?php echo $productName; ?>">
         <h3><?php echo $productName; ?></h3>
         <p><?php echo $productDescription; ?></p>
-        <!-- Add other product details here -->
         <i class="fas fa-shopping-cart cart-icon"></i> <!-- Cart icon -->
         <div class="stars"> <!-- Review stars -->
             <?php

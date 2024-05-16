@@ -3,39 +3,30 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 20px;
-    margin-top: 150px;
+    padding: 10px;
+    margin-top: 100px;
     margin-bottom: 100px;
     margin-left: auto;
+    width: 80%;
     margin-right: auto;
-    background-color: aliceblue;
+    background-color: #fcfafa;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
 }
 
 /* Left Container Styles */
 .contactus-container .left-container {
     flex: 1;
     text-align: center;
-    background-color: grey;
     width: 100%;
-    margin-bottom: 20px; /* Space between containers */
-    margin-right: 10px;
 }
 
 .contactus-container .left-container img {
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    margin-top: 40px;
-    margin-bottom: 20px;
+    
+    width: 100%;
+    height: 100%;
 }
 
-.contactus-container .left-container h2 {
-    margin: 10px 0;
-}
-
-.contactus-container .left-container p {
-    margin: 10px 0;
-}
 
 /* Right Container Styles */
 .contactus-container .right-container {
@@ -77,17 +68,17 @@ textarea {
 
 /* Submit Button Styles */
 .contactus-container input[type="submit"] {
-    background-color: #007bff;
+    background-color: #000;
     color: #fff;
     border: none;
-    padding: 20px 30px;
+    padding: 15px 30px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     width: 25%;
 }
 
 .contactus-container input[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #212121;
 }
 
 .contactus-container input[type="submit"]:active {

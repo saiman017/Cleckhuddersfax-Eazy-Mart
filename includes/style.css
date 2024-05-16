@@ -17,9 +17,6 @@ body {
   
 }
 
-/* .banner{
-  margin-bottom: 100px;
-} */
 
 
 /* home banner */
@@ -49,14 +46,13 @@ body {
   margin-top: 20px;
 }
 .content h1{
-  /* color: rgb(236, 143, 57); */
   font-weight: bold;
   margin-left: 23px;
   font-size: 55px;
   text-shadow: -1px 1px 1px black;
 }
 .content h1 span{
-  /* color: rgb(236, 143, 57); */
+
   text-shadow: 1px 1px 1px black;
 }
 #span2{
@@ -400,7 +396,6 @@ body {
 
 #feature-product3 .product_image{
   width: 100%;
-  /* height: ; */
   overflow: hidden;
   height: 200px;
 
@@ -491,7 +486,6 @@ body {
 
 
 
-/* Login */
 .login-container{
         
             margin: 0;
@@ -508,10 +502,9 @@ body {
   background-color: #f3f4f6;
   border-radius: 1rem;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-  /* max-width: 80%; */
   max-width: 900px;
   width: 100%;
-  padding: 1rem; /* Adjusted padding */
+  padding: 1rem; 
   z-index: 1;
 }
 
@@ -546,22 +539,22 @@ body {
 .login-container .logo {
   width: 150px;
   height: auto;
-  margin-bottom: 2rem; /* Reduced margin */
+  margin-bottom: 2rem; 
 }
 
 .login-container .form-container h2 {
   font-size: 1.5rem;
   font-weight: 600;
   color: #333;
-  margin-bottom: 0.5rem; /* Reduced margin */
+  margin-bottom: 0.5rem; 
   text-align: center;
 }
 
 .login-container .input-field {
   border: 0.5px solid #FF6347;
   border-radius: 0.5rem;
-  padding: 0.5rem; /* Adjusted padding */
-  margin-bottom: 0.5rem; /* Reduced margin */
+  padding: 0.5rem; 
+  margin-bottom: 0.5rem;
   width: 100%;
   transition: border-color 0.3s ease;
 }
@@ -571,8 +564,8 @@ body {
   color: #ffffff;
   border: none;
   border-radius: 0.5rem;
-  padding: 0.5rem 1rem; /* Adjusted padding */
-  font-size: 1rem; /* Adjusted font size */
+  padding: 0.5rem 1rem; 
+  font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 100%;
@@ -584,7 +577,7 @@ body {
 }
 
 .login-container .mt-4 {
-  margin-top: 0.5rem; /* Reduced margin */
+  margin-top: 0.5rem;
 }
 
 .login-container .signin-link {
@@ -600,14 +593,14 @@ body {
 /* Media Query for smaller screens */
 @media (max-width: 768px) {
   .login-container .left-side {
-      display: none; /* Hide on smaller screens */
+      display: none; 
   }
   .login-container .right-side {
-      flex: 1; /* Occupy full width on smaller screens */
+      flex: 1;
   }
   .login-container .input-field,
   .submit-btn {
-      font-size: 0.9rem; /* Adjusted font size */
+      font-size: 0.9rem;
   }
 }
 
@@ -625,20 +618,20 @@ body {
 /* Media Query for smaller screens */
 @media (max-width: 768px) {
   .login-container .left-side {
-      display: none; /* Hide on smaller screens */
+      display: none; 
   }
   .login-container .right-side {
-      flex: 1; /* Occupy full width on smaller screens */
+      flex: 1; 
   }
   .login-container .input-field,
   .login-container select,
   .submit-btn {
-      font-size: 0.9rem; /* Adjusted font size */
+      font-size: 0.9rem;
   }
 }
 
 .login-container .remember-me {
-  margin-bottom: 0.5rem; /* Adjusted margin */
+  margin-bottom: 0.5rem; 
   display: flex;
   align-items: center;
   padding-top: 10px;
@@ -646,19 +639,19 @@ body {
 }
 
 .login-container .remember-me input[type="checkbox"] {
-  margin-right: 0.5rem; /* Adjusted margin */
+  margin-right: 0.5rem; 
 }
 
 .login-container .forget-link {
-  margin-left: auto; /* Push to the right */
-  color: #333; /* Adjusted color */
-  text-decoration: underline; /* Underline for emphasis */
+  margin-left: auto; 
+  color: #333; 
+  text-decoration: underline; 
   cursor: pointer;
-  border: none; /* Show pointer on hover */
+  border: none; 
 }
 
 .login-container .forget-link:hover {
-  color: #f97316; /* Highlight color on hover */
+  color: #f97316; 
 }
 
 
@@ -681,19 +674,19 @@ body {
   height: 100%;
   background-size: cover;
   background-position: center;
-  filter: blur(5px); /* Apply blur effect */
-  z-index: -1; /* Move behind other elements */
+  filter: blur(5px); 
+  z-index: -1; 
 }
 
 .customer-signup .form-container {
   display: flex;
-  background-color: rgba(255, 255, 255, 0.9); /* Use rgba for background color with transparency */
+  background-color: rgba(255, 255, 255, 0.9); 
   border-radius: 1rem;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
   max-width: 900px;
-  width: 100%; /* Adjusted width */
-  padding: 1rem; /* Reduced padding */
-  z-index: 1; /* Move above background container */
+  width: 100%; 
+  padding: 1rem; 
+  z-index: 1; /
 }
 
 .customer-signup .left-side {
@@ -709,8 +702,8 @@ body {
 }
 
 .customer-signup .left-side img {
-  max-width: 100%; /* Ensure the image fits within the container */
-  max-height: 100%; /* Ensure the image fits within the container */
+  max-width: 100%; 
+  max-height: 100%; 
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
 }
@@ -791,14 +784,14 @@ body {
 }
 @media (max-width: 768px) {
   .customer-signup .left-side {
-      display: none; /* Hide on smaller screens */
+      display: none;
   }
   .customer-signup .right-side {
-      flex: 1; /* Occupy full width on smaller screens */
+      flex: 1;
   }
   .customer-signup .input-field,
   .submit-btn {
-      font-size: 0.9rem; /* Adjusted font size */
+      font-size: 0.9rem; 
   }
 }
 /* Customer signup end */
@@ -819,19 +812,19 @@ body {
   height: 100%;
   background-size: cover;
   background-position: center;
-  filter: blur(5px); /* Apply blur effect */
-  z-index: -1; /* Move behind other elements */
+  filter: blur(5px); 
+  z-index: -1; 
 }
 
 .trader-login .form-container {
   display: flex;
-  background-color: rgba(255, 255, 255, 0.9); /* Use rgba for background color with transparency */
+  background-color: rgba(255, 255, 255, 0.9); 
   border-radius: 1rem;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
   max-width: 900px;
-  width: 100%; /* Adjusted width */
-  padding: 1rem; /* Reduced padding */
-  z-index: 1; /* Move above background container */
+  width: 100%; 
+  padding: 1rem; 
+  z-index: 1; 
 }
 
 .trader-login .left-side {
@@ -847,8 +840,8 @@ body {
 }
 
 .trader-login .left-side img {
-  max-width: 100%; /* Ensure the image fits within the container */
-  max-height: 100%; /* Ensure the image fits within the container */
+  max-width: 100%; 
+  max-height: 100%; 
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
 }
@@ -930,14 +923,14 @@ body {
 }
 @media (max-width: 768px) {
   .trader-login .left-side {
-      display: none; /* Hide on smaller screens */
+      display: none; 
   }
   .trader-login .right-side {
-      flex: 1; /* Occupy full width on smaller screens */
+      flex: 1;
   }
   .trader-login .input-field,
   .submit-btn {
-      font-size: 0.9rem; /* Adjusted font size */
+      font-size: 0.9rem;
   }
 }
 
@@ -959,12 +952,12 @@ body {
   justify-content: center;
   align-items: center;
   padding-top: 100px;
-  flex-direction: column; /* Added to stack items vertically */
+  flex-direction: column; 
 }
 
 .add-shop .right-side {
           width: 100%;
-          max-width: 600px; /* Adjust as needed */
+          max-width: 600px; 
           padding: 20px;
           background-color: #ffffff;
           border-radius: 2rem;
@@ -992,7 +985,7 @@ body {
       }
 
       .add-shop .submit-btn {
-        width: 200px; /* Adjust width as needed */
+        width: 200px; 
         background-color: #ffb66d;
         color: #ffffff;
         padding: 10px 20px;
@@ -1000,8 +993,8 @@ body {
         border-radius: 0.5rem;
         cursor: pointer;
         transition: background-color 0.3s ease;
-        margin: 0 auto; /* Center the button horizontally */
-        display: block; /* Ensure button occupies full width of its container */
+        margin: 0 auto; 
+        display: block; 
     }
 
       .add-shop .submit-btn:hover {
@@ -1022,3 +1015,443 @@ body {
   height: auto;
   margin-bottom: 0.5rem;
   }
+
+
+  /* Email verification */
+  .email-verification {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+    flex-direction: column;
+}
+
+.email-verification .right-side {
+    width: 90%;
+    max-width: 500px; 
+    padding: 40px;
+    background-color: #fcfafa;
+    border-radius: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.email-verification h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.email-verification .submit-btn {
+    width: 100%; 
+    background-color: #ffb66d;
+    color: #ffffff;
+    padding: 10px;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 15px;
+    padding-top: 10px;
+}
+
+.email-verification .submit-btn:hover {
+    background-color: #ff9170;
+}
+
+.email-verification .resend-link {
+    text-align: center;
+    color: #3182ce;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.email-verification .resend-link:hover {
+    color: #2c5282;
+}
+
+.email-verification .logo-link {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin-bottom: 20px;
+}
+
+.email-verification .logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 0.5rem;
+}
+
+.email-verification .para {
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+
+/* Opt verfication */
+.otp-verification {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+  flex-direction: column; 
+}
+
+.otp-verification .right-side {
+  width: 90%;
+  max-width: 500px; 
+  padding: 40px;
+  background-color: #fcfafa;
+  border-radius: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.otp-verification h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.otp-verification .otp-form {
+  margin-top: 20px;
+}
+.otp-verification #otp{
+  font-weight: bold;
+}
+
+.otp-verification .input-field {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  background-color: #f3f4f6;
+}
+
+.otp-verification .submit-btn {
+  width: 100%;
+  background-color: #ffb66d;
+  color: #ffffff;
+  padding: 10px;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.otp-verification .submit-btn:hover {
+  background-color: #ff9170;
+}
+
+.otp-verification .resend-link {
+  text-align: center;
+  color: #3182ce;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.otp-verification .resend-link:hover {
+  color: #2c5282;
+}
+
+.otp-verification .logo-link {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  margin-bottom: 20px;
+}
+
+.otp-verification .logo {
+  width: 150px;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+
+/* Same CSS styles as provided in the original code */
+
+.password-reset {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+  flex-direction: column; 
+}
+
+.password-reset .right-side {
+  width: 90%;
+  max-width: 500px; 
+  padding: 40px;
+  background-color: #fcfafa;
+  border-radius: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.password-reset h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.password-reset .otp-form {
+  margin-top: 20px;
+}
+
+.password-reset .input-group {
+  margin-bottom: 15px;
+}
+
+.password-reset .input-group label {
+  font-weight:500;
+  padding-bottom: 8px;
+}
+
+.password-reset .input-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  background-color: #f3f4f6;
+}
+
+.password-reset .submit-btn {
+  width: 100%;
+  background-color: #ffb66d;
+  color: #ffffff;
+  padding: 10px;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.password-reset .submit-btn:hover {
+  background-color: #ff9170;
+}
+
+.password-reset .logo-link {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  margin-bottom: 20px;
+}
+
+.password-reset .logo {
+  width: 150px;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+
+ /* Email verify succefully */
+ .email-verify_successfully {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+}
+
+.email-verify_successfully .content {
+  width: 90%;
+  max-width: 500px;
+  padding: 40px;
+  background-color: #fcfafa;
+  border-radius: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.email-verify_successfully h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.email-verify_successfully .logo{
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  margin-bottom: 20px;
+}
+
+.email-verify_successfully .green-logo{
+  width: 150px;
+height: auto;
+margin-bottom: 0.5rem;
+}
+
+.email-verify_successfully .submit-btn {
+  width: 100%;
+  background-color: #ffb66d;
+  color: #ffffff;
+  padding: 10px;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.email-verify_successfully .submit-btn:hover {
+  background-color: #ff9170;
+}
+
+
+/* customer profile */
+
+.customer-profile .container {
+  display: flex;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.customer-profile .sidebar {
+  color: #000;
+  padding: 20px;
+  width: 250px;
+  position: relative;
+  background-color: #fcfafa;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+}
+
+.customer-profile  .sidebar a {
+  color: #000;
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.customer-profile  .sidebar a:hover {
+  background-color: #666;
+}
+
+.customer-profile  .main-content {
+  margin-left: 50px;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.customer-profile  .profile {
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  max-width: 800px;
+  width: 100%;
+  position: relative; 
+}
+
+.customer-profile  .profile-row {
+  display: flex;
+  justify-content: space-between; 
+  margin-bottom: 20px; 
+}
+
+.customer-profile  .profile-field {
+  flex: 1; 
+  padding: 0 10px; 
+}
+
+.customer-profile .profile-header h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 10px;
+  align-items: center;
+  text-align: center;
+}
+
+.customer-profile  .profile-header p {
+  font-size: 1.2rem;
+  color: #666;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.customer-profile .profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden; 
+  position: relative;
+  margin: 0 auto; 
+  border-color: #666;
+  margin-bottom: 20px;
+}
+
+.customer-profile .profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+.customer-profile .edit-profile-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: #007bff;
+  color: white;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+}
+
+.customer-profile .edit-profile-icon:hover {
+  background-color: #0056b3;
+}
+
+.customer-profile .profile:hover .edit-profile-icon {
+  display: block; 
+}
+
+.customer-profile .profile-field label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+  display: block;
+  font-size: 1rem;
+}
+
+.customer-profile .profile-field input, .profile-field select, .profile-field p {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.customer-profile  .profile-field p {
+  background-color: #f9f9f9;
+}
+
+.customer-profile  button {
+  background-color: orange;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.customer-profile  button:hover {
+  background-color: crimson;
+}
+
+
