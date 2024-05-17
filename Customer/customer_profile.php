@@ -43,8 +43,8 @@ if(isset($_POST['saveProfile'])) {
     $email = $_POST['email'];
     $npassword = $_POST['npassword'];
     $opassword = $_POST['opassword'];
-    $customerId = $_SESSION['user']['TRADER_ID']; 
-    $number = $_SESSION['contact_number'];
+    $customerId = $_SESSION['user']['CUSTOMER_ID']; 
+    $number = $_POST['contact_number'];
     $address = $_POST['address'];
     $dateOfBirth = date('Y-m-d', strtotime($_POST['dob']));
     $gender = $_POST["gender"];
@@ -54,7 +54,7 @@ if(isset($_POST['saveProfile'])) {
 
     // Check if old password matches
 $old_password = $_POST['opassword'];
-$query = "SELECT PASSWORD FROM TRADER WHERE CUSTOMER_ID = '$customerId'";
+$query = "SELECT PASSWORD FROM CUSTOMER WHERE CUSTOMER_ID = '$customerId'";
 $statement = oci_parse($conn, $query);
 oci_execute($statement);
 $fetch_password = oci_fetch_assoc($statement);
@@ -66,15 +66,15 @@ $fetch_password = oci_fetch_assoc($statement);
 // }
 
 // Check if old and new passwords are the same
-if ($old_password === $npassword) {
+if ($opassword === $npassword) {
     $_SESSION['error'] = "New password should be different from the old password";
     header("Location: customer_profile.php");
     exit();
 }
 
 
-    $query_update = "UPDATE TRADER 
-              SET FIRST_NAME = '$first_name', LAST_NAME = '$last_name', EMAIL = $email,ADDRESS='$address',GENDER='$gender',USERNAME='$Uname',CONTACT_NUMBER = '$number', PASSWORD = '$npassword', DATE_OF_BIRTH = TO_DATE('$dob', 'YYYY-MM-DD',) 
+    $query_update = "UPDATE CUSTOMER 
+              SET FIRST_NAME = '$first_name', LAST_NAME = '$last_name', EMAIL = $email,ADDRESS='$address',GENDER='$gender',USERNAME='$Uname',CONTACT_NUMBER = '$number', PASSWORD = '$npassword', DATE_OF_BIRTH = TO_DATE('$dateOfBirth', 'YYYY-MM-DD') 
               WHERE CUSTOMER_ID = '$customerId'";
 
 
