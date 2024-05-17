@@ -4,6 +4,9 @@ require_once '../middlewares/checkAuthentication.php';
 // Check if the user is logged in
 checkIfUserIsLoggedIn();
 
+include '../messages/notifications.php';
+
+list($error,$notification)=flashNotification();
 
 
 $conn = oci_connect('saiman', 'Stha_12', '//localhost/xe');
@@ -56,11 +59,11 @@ $statement = oci_parse($conn, $query);
 oci_execute($statement);
 $fetch_password = oci_fetch_assoc($statement);
 
-if ($fetch_password['PASSWORD'] !== $old_password) {
-    $_SESSION['error'] = "Old password is incorrect";
-    header("Location: customer_profile.php");
-    exit();
-}
+// if ($fetch_password['PASSWORD'] !== $old_password) {
+//     $_SESSION['error'] = "Old password is incorrect";
+//     header("Location: customer_profile.php");
+//     exit();
+// }
 
 // Check if old and new passwords are the same
 if ($old_password === $npassword) {
@@ -117,6 +120,11 @@ oci_close($conn);
                 <a href="./customer_order.php">My Orders</a>
                 <a href="./Wishlist.php">My Wishlist</a>
             </div>
+            <?php if($error): ?>
+<div class="alert alert-danger" role="alert">
+<?php  echo $error; ?>
+</div>
+<?php endif; ?>
             <div class="main-content">
                 <div class="profile" id="profile">
                     <div class="profile-header">
@@ -216,7 +224,7 @@ oci_close($conn);
                     <div class="profile-row">
                         <div class="profile-field">
                             <label for="new-password">Old Password</label>
-                            <input id="new-password" name="opassword" type="password">
+                            <input id="new-password" name="opassword" type="text" value="<?php echo $fetch['PASSWORD'];?>" readonly>
                         </div>
                         <div class="profile-field">
                             <label for="confirm-password">New Password</label>
