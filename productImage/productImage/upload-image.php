@@ -20,6 +20,7 @@ if (isset($_POST['submit']) && isset($_FILES['product_image']) && isset($_POST['
         $blob = oci_new_descriptor($conn, OCI_D_LOB);
         oci_bind_by_name($stid, ":image", $blob, -1, OCI_B_BLOB);
         oci_bind_by_name($stid, ":product_id", $productId);
+        
 
         oci_execute($stid, OCI_DEFAULT); // Use OCI_DEFAULT to defer the commit
 

@@ -28,8 +28,8 @@ if(isset($_POST['add-shop'])) {
     
 
 
-    // Check if email, username, or contact number already exists
-    $query_check = "SELECT EMAIL,SHOP_NAME,CONTACT_NUMBER FROM Shop WHERE Email = '$email' OR SHOP_NAME = '$shopName' OR Contact_Number = '$number'";
+    // Check if email,shop_name or contact number already exists
+    $query_check = "SELECT EMAIL,SHOP_NAME,CONTACT_NUMBER FROM Shop WHERE Email = '$email' OR SHOP_NAME = '$shopName' OR Contact_Number = '$number')";
     $statement_check = oci_parse($conn, $query_check);
     oci_execute($statement_check);
     $row = oci_fetch_assoc($statement_check);
@@ -40,22 +40,23 @@ if(isset($_POST['add-shop'])) {
         if ($email === $row['EMAIL']) {
             $message = "Email already exists. Please use a different email.";
         } elseif ($shopName === $row['SHOP_NAME']) {
-            $message = "Shop name already exists. Please use a different username.";
+            $message = "Shop name already exists. Please use a different shop name.";
         } elseif ($number === $row['CONTACT_NUMBER']) {
             $message = "Contact number already exists. Please use a different one.";
         }
         $_SESSION['error'] = $message;
-        header("Location: ../trader/add_shop_after_signup.php");
+        header("Location: add_shop_after_signup.php");
         exit();
     }
+    
 
     $traderID = $_SESSION['user']['TRADER_ID'];
-    $query = "INSERT INTO Shop (SHOP_NAME,EMAIL,LOCATION,CONTACT_NUMBER,SHOP_IMAGE) VALUES ($shopName,$email,$location,$number,NULL,$traderID)";
+    $query = "INSERT INTO Shop (SHOP_NAME,EMAIL,Shop_Location,CONTACT_NUMBER,SHOP_IMAGE,TRADER_ID) VALUES ('$shopName','$email','$location','$number',NULL,'$traderID')";
     
     $statement = oci_parse($conn, $query);
-    $shopResult = oci_execute($statement);
+    $result = oci_execute($statement);
 
-    if($shopResult) {
+    if($result) {
         oci_commit($conn);
         header("Location: ../trader/trader_dashboard.php");
         exit(); 
@@ -63,17 +64,8 @@ if(isset($_POST['add-shop'])) {
         $error = oci_error($statement);
         $_SESSION['error'] = $error['message']; // Display Oracle error message
     }
-
-
-
-
     oci_close($conn);
 }
-
-
-
-
-
 ?>
 
 
@@ -95,13 +87,13 @@ if(isset($_POST['add-shop'])) {
         <div class="right-side" id="shopDetailsForm">
             <a href="./trader_dashboard.php" class="logo-link"><img src="../assets/images/icons/logo.png" alt="" class="logo"></a>
             <h2>Shop Details</h2>
-            <form class="shop-form" id="shopForm">
+            <form class="shop-form" method = "POST"id="shopForm">
                 <span>Shop Name</span>
                 <input type="text" id="shopName" name="shopName" placeholder="Shop Name" class="input-field">
                 <span>Location</span>
                 <input type="text" id="location" name="location" placeholder="Location" class="input-field">
                 <span>Email</span>
-                <input type="email" id="shopEmailr" name="shopEmail" placeholder="Email" class="input-field">
+                <input type="email" id="shopEmail" name="shopEmail" placeholder="Email" class="input-field">
                 <span>Contact Number</span>
                 <input type="tel" id="shopContactNumber" name="shopContactNumber" placeholder="Contact Number" class="input-field">
                 <span>Shop Image</span>
