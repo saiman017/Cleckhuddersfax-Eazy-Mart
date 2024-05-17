@@ -64,7 +64,14 @@ session_start()
                         </ul>
                     </li>
                     <li class="nav-link-item"><a href="../Customer/Customer_cart.php"><img src="../assets/images/icons/shopping-cart.png" id="topIcons" alt="">Cart</a></li>
-                    <li class="nav-link-item"><a href="../Sign Up/trader_signup.php"><img src="../assets/images/icons/store.png"  id="topIcons" alt="">Become a trader</a></li>
+
+                    <?php if(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 'Trader'): ?>
+    <li class="nav-link-item"><a href="../Sign Up/trader_signup.php"><img src="../assets/images/icons/store.png" id="topIcons" alt="">Become a trader</a></li>
+<?php endif; ?>
+
+
+
+
                 </ul>
             </div>
 
