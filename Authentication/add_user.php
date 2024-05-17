@@ -1,18 +1,21 @@
 <?php
-$conn = oci_connect('saiman', 'Stha_12', '//localhost/xe');
+// Start the session for error handling
+session_start();
+
+// Establish connection to the database
+$conn = oci_connect('c##saiman', 'Stha_12', '//192.168.1.69/XE');
 if (!$conn) {
     $m = oci_error();
-    echo $m['message'], "\n";
+    $_SESSION['error'] = $m['message'];
     exit;
 } else {
-    print "Connected to Oracle!";
+    $_SESSION['notification'] = "Connected to Oracle!";
 }
 
-if(isset($_POST['submit']))
-{
-    // Retrieve form data 
+if(isset($_POST['submit'])) {
+    // Retrieve form data
     $email = $_POST['email'];
-    $password = $_POST['password']; 
+    $password = $_POST['password'];
     $fname = $_POST['first-name'];
     $lname = $_POST['last-name'];
     $number = $_POST['contact-number'];
@@ -30,33 +33,36 @@ if(isset($_POST['submit']))
 
     if ($row !== false) {
         $message = "Email, username, or contact number already exists. Please use different ones.";
-        if ($email === $row['Email']) {
+        if ($email === $row['EMAIL']) {
             $message = "Email already exists. Please use a different email.";
-        } elseif ($Uname === $row['Username']) {
+        } elseif ($Uname === $row['USERNAME']) {
             $message = "Username already exists. Please use a different username.";
-        } elseif ($number === $row['Contact_Number']) {
+        } elseif ($number === $row['CONTACT_NUMBER']) {
             $message = "Contact number already exists. Please use a different one.";
         }
-        echo '<script>alert("' . $message . '")</script>';
+        $_SESSION['error'] = $message;
+        header("Location: ../Sign Up/customer_signup.php");
         exit();
     }
 
-    // password validation
+    // Password validation
     if ($password !== $cpassword) {
-        echo '<script>alert("Password and Confirm Password do not match. Please try again.")</script>';
+        $_SESSION['error'] = "Password and Confirm Password do not match. Please try again.";
+        header("Location: ../Sign Up/customer_signup.php");
         exit();  
     }
-    
+
     if (strlen($password) < 8 || strlen($password) > 32 ) {
-        echo '<script>alert("Password must be at least 8 or less than 32 characters long.")</script>';
+        $_SESSION['error'] = "Password must be at least 8 or less than 32 characters long.";
+        header("Location: ../Sign Up/customer_signup.php");
         exit();
     }
 
     if (!preg_match('/[!@#$%^&*()\-_=+]/', $password)) {
-        echo '<script>alert("Password must contain at least one special charcater.")</script>';
+        $_SESSION['error'] = "Password must contain at least one special character.";
+        header("Location: ../Sign Up/customer_signup.php");
         exit();
     }
-    
 
     // SQL query
     $query = "INSERT INTO Customer (First_Name, Last_Name, Contact_Number, Address, Date_of_Birth, Gender, Email, Register_Date, Username, Password, Profile_Image) 
@@ -69,10 +75,9 @@ if(isset($_POST['submit']))
         oci_commit($conn);
         header("Location: ../Login/customer_signin.php");
         exit(); 
-    }
-    else {
+    } else {
         $error = oci_error($statement);
-        echo "Error: " . $error['message']; // Display Oracle error message
+        $_SESSION['error'] = $error['message']; // Display Oracle error message
     }
 
     oci_close($conn);

@@ -1,3 +1,20 @@
+<?php 
+
+include '../messages/notifications.php';
+
+list($error,$notification)=flashNotification();
+
+
+// Check if the user is logged in
+// Check if the user is logged in
+if(isset($_SESSION['user'])){
+    header("Location: ../index.php");
+}
+
+
+?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -5,28 +22,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../includes/style.css">
     <link rel="shortcut icon" href="../assets/images/icons/logo.png" type="image/x-icon">
 </head>
 <body>
 
+
 <div class="login-container">
+<?php 
+
+if($error): ?>
+<div class="alert alert-danger" role="alert">
+<?php  echo $error; ?>
+</div>
+<?php endif; ?>
     <div class="form-container">
         <div class="left-side">
-            <img src="../assets/images/abc.jpg" alt="Background Image">
+             <img src="../assets/images/abc.jpg" alt="Background Image">
         </div>
         <div class="right-side">
             <a href="../index.php"><img src="../assets/images/icons/logo.png" alt="Logo" class="logo"></a>
             <h2>Login</h2>
             <form action="../Authentication/loginAuthentication.php" method="post">
-                <?php 
-                if (isset($error)){
-                    foreach($error as $error){
-                        echo '<sapn class="error-msg">' .$error.'</span>';
-                    };  
-                };
-                ?>
+
                 <span>Username/Email</span>
                 <input type="text" id="email" name="email_username" placeholder="Username/Email" class="input-field">
                 <span>Password</span>
@@ -56,6 +77,8 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
 </body>
 </html>
