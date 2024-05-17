@@ -58,30 +58,30 @@ $fetch_password = oci_fetch_assoc($statement);
 
 if ($fetch_password['PASSWORD'] !== $old_password) {
     $_SESSION['error'] = "Old password is incorrect";
-    header("Location: customer-profile.php");
+    header("Location: customer_profile.php");
     exit();
 }
 
 // Check if old and new passwords are the same
 if ($old_password === $npassword) {
     $_SESSION['error'] = "New password should be different from the old password";
-    header("Location: customer-profile.php");
+    header("Location: customer_profile.php");
     exit();
 }
 
 
-    $query = "UPDATE TRADER 
+    $query_update = "UPDATE TRADER 
               SET FIRST_NAME = '$first_name', LAST_NAME = '$last_name', EMAIL = $email,ADDRESS='$address',GENDER='$gender',USERNAME='$Uname',CONTACT_NUMBER = '$number', PASSWORD = '$npassword', DATE_OF_BIRTH = TO_DATE('$dob', 'YYYY-MM-DD',) 
               WHERE CUSTOMER_ID = '$customerId'";
 
 
-    $statement = oci_parse($conn, $query);
-    $result = oci_execute($statement);
+    $statement_update = oci_parse($conn, $query_update);
+    $result_update = oci_execute($statement_update);
 
 
-    if($result) {
+    if($result_update) {
         oci_commit($conn);
-        header("Location: customer-profile.php");        
+        header("Location: customer_profile.php");        
         exit(); 
     }
     else {
@@ -206,7 +206,7 @@ oci_close($conn);
                             <div class="profile-row">
                                 <div class="profile-field">
                                     <label for="email">Email</label>
-                                    <input id="email" type="email" name="email" value="<?php echo $fetch['EMAIL']; ?>" readonly>
+                                    <input id="email" type="email" name="email" value="<?php echo $fetch['EMAIL']; ?>">
                                 </div>
                         <div class="profile-field">
                             <label for="username">Username</label>
