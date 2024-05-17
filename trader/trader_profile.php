@@ -270,7 +270,7 @@ body {
             <div class="profile" id="profile">
                 <div class="profile-header">
                     <h1>Trader Profile</h1>
-                    <p>Welcome back, Saiman!</p>
+                    <p>Welcome back, <?php echo $fetch['FIRST_NAME']; ?>!</p>
                     <div class="profile-picture">
                         <img src="https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Profile Picture">
                         <div class="edit-profile-icon">
@@ -282,11 +282,11 @@ body {
                     <div class="profile-row">
                         <div class="profile-field">
                             <label for="first-name">First Name</label>
-                            <input id="first-name" type="text" value="Saiman" readonly>
+                            <input id="first-name" type="text" value="<?php echo $fetch['FIRST_NAME']; ?>" readonly>
                         </div>
                         <div class="profile-field">
                             <label for="last-name">Last Name</label>
-                            <p>Shrestha</p>
+                            <input id="first-name" type="text" value="<?php echo $fetch['LAST_NAME']; ?>" readonly>
                         </div>
                     </div>
                     <div class="profile-row">
@@ -300,17 +300,17 @@ body {
                         </div>
                         <div class="profile-field">
                             <label for="dob">Date of Birth</label>
-                            <input id="dob" type="date" value="1990-01-01" readonly>
+                            <input id="dob" type="date" value="<?php echo date('Y-m-d', strtotime($fetch['DATE_OF_BIRTH'])); ?>" readonly>
                         </div>
                     </div>
                     <div class="profile-row">
                         <div class="profile-field">
                             <label for="address">Address</label>
-                            <input id="address" type="text" value="Kathmandu" readonly>
+                            <input id="address" type="text" value="<?php echo $fetch['ADDRESS']; ?>" readonly>
                         </div>
                         <div class="profile-field">
                             <label for="number">Contact Number</label>
-                            <input id="number" type="number" value="1990-01-01" readonly>
+                            <input id="number" type="number" value="<?php echo $fetch['CONTACT_NUMBER']; ?>" readonly>
                         </div>
                     </div>
                     <button id="edit-profile">Edit Profile</button>
@@ -319,11 +319,11 @@ body {
                 <div class="profile-row">
                         <div class="profile-field">
                             <label for="first-name">First Name</label>
-                            <input id="first-name" type="text" value="Saiman" readonly>
+                            <input id="first-name" type="text" value="<?php echo $fetch['FIRST_NAME']; ?>" >
                         </div>
                         <div class="profile-field">
                             <label for="last-name">Last Name</label>
-                            <p>saiman</p>
+                            <input id="first-name" type="text" value="<?php echo $fetch['LAST_NAME']; ?>" >
                         </div>
                     </div>
                     <div class="profile-row">
@@ -337,27 +337,27 @@ body {
                         </div>
                         <div class="profile-field">
                             <label for="dob">Date of Birth</label>
-                            <input id="dob" type="date" value="2000-01-01" readonly>
+                            <input id="dob" type="date" value="<?php echo date('Y-m-d', strtotime($fetch['DATE_OF_BIRTH'])); ?>" >
                         </div>
                     </div>
                     <div class="profile-row">
                         <div class="profile-field">
                             <label for="address">Address</label>
-                            <input id="address" type="text" value="Kathmandu" readonly>
+                            <input id="address" type="text" value="<?php echo $fetch['ADDRESS']; ?>" >
                         </div>
                         <div class="profile-field">
                             <label for="number">Contact Number</label>
-                            <input id="number" type="number" value="1990-01-01" readonly>
+                            <input id="number" type="number" value="<?php echo $fetch['CONTACT_NUMBER']; ?>" >
                         </div>
                     </div>
                     <div class="profile-row">
                         <div class="profile-field">
                             <label for="email">Email</label>
-                            <input id="email" type="email" value="saiman@example.com">
+                            <input id="email" type="email" value="<?php echo $fetch['EMAIL']; ?>">
                         </div>
                         <div class="profile-field">
                             <label for="username">Username</label>
-                            <input id="username" type="text" value="saiman">
+                            <input id="username" type="text" value="<?php echo $fetch['USERNAME']; ?>">
                         </div>
                     </div>
                     <div class="profile-row">
@@ -371,7 +371,7 @@ body {
                         </div>
                     </div>
                     <div class="profile-row">
-                        <button id="save-profile">Save Profile</button>
+                        <button name="save" id="save-profile">Save Profile</button>
                     </div>
                 </div>
             </div>

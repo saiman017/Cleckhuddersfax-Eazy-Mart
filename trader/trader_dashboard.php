@@ -51,8 +51,8 @@ oci_close($conn);
     <div class="grid-container">
 
     <header class="header">
-  <div class="menu-icon">
-    <span class="material-icons-outlined">menu</span>
+    <div class="menu-icon" onclick="openSidebar()">
+      <span class="material-icons-outlined">menu</span>
   </div>
   <div class="search-bar">
     <input type="text" placeholder="Search...">
@@ -73,6 +73,7 @@ oci_close($conn);
     <div class="sidebar-brand">
       <a href="./trader_dashboard.php"><img src="../assets/images/icons/logo.png" alt=""></a>
     </div>
+    <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
   </div>
 
   <ul class="sidebar-list">
@@ -132,11 +133,12 @@ oci_close($conn);
             </div>
           </div>
 
-          <div class="card">
+          <a href="add_shop_after_signup.php"><div class="card">
             <div class="card-inner">
-              <h2>Graph 2</h2>
+              <h2>Add shop</h2>
             </div>
           </div>
+          </a>
 
           <div class="card">
             <div class="card-inner">
@@ -152,6 +154,27 @@ oci_close($conn);
         </div>       
       </main>
     </div>
+
+    <script >
+      // SIDEBAR TOGGLE
+
+      let sidebarOpen = false;
+const sidebar = document.getElementById('sidebar');
+
+function openSidebar() {
+  if (!sidebarOpen) {
+    sidebar.classList.add('sidebar-responsive');
+    sidebarOpen = true;
+  }
+}
+
+function closeSidebar() {
+  if (sidebarOpen) {
+    sidebar.classList.remove('sidebar-responsive');
+    sidebarOpen = false;
+  }
+}
+  </script>
 
   </body>
 </html>
