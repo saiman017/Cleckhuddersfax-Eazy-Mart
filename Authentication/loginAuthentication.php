@@ -38,9 +38,11 @@ if (isset($_POST['login'])) {
     // Fetch the user record
     $user = oci_fetch_assoc($statement);
 
+    
+
     if ($user) {
         // Verify email and password
-        if ($user['EMAIL'] === $email_username && $user['PASSWORD'] === $password) {
+        if ($user['EMAIL'] || $user['USERNAME'] === $email_username && $user['PASSWORD'] === $password) {
             // Authentication successful
             $_SESSION['user'] = $user; 
             // Redirect users to role-based pages
@@ -48,9 +50,9 @@ if (isset($_POST['login'])) {
                 $_SESSION['customer_name'] = $user['EMAIL'];
                 header("Location: ../index.php");
             } elseif ($role == 'trader') {
-                header("Location: ../Dashboard/Trader Dashboard.php");
+                header("Location: ../trader/trader_dashboard.php");
             } elseif ($role == 'admin') {
-                header("Location: ../admin_dashboard.php");
+                header("Location: ../admin_dashboard/admin_dashboard.php");
             }
             exit(); // Make sure to exit after redirection
         } else {

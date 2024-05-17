@@ -1,3 +1,37 @@
+<?php
+
+require_once '../middlewares/checkAuthentication.php';
+
+// Check if the user is logged in
+checkIfUserIsLoggedIn();
+
+
+
+$conn = oci_connect('saiman', 'Stha_12', '//localhost/xe');
+if (!$conn) {
+    $m = oci_error();
+    $_SESSION['error'] = $m['message'];
+    exit();
+} else {
+    $_SESSION['notification'] = "Connected to Oracle!";
+}
+ 
+if (isset($_SESSION['user']['EMAIL'])) {
+  $userEmail = $_SESSION['user']['EMAIL'];
+} else {
+  die("User not found");
+}
+$query = "SELECT * FROM Customer WHERE Email = :email";
+$statement = oci_parse($conn, $query);
+oci_bind_by_name($statement, ":email", $userEmail);
+oci_execute($statement);
+
+// Fetch the user record
+$fetch = oci_fetch_assoc($statement);
+oci_close($conn)
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,7 +58,7 @@
     <div class="profile-image">
       <img src="../assets/images/Shop/butcher 1.jpg" alt="Profile Image">
     </div>
-    <div class="profile-name">Profile</div>
+    <<div class="profile-name"><?php echo $fetch['FIRST_NAME']; ?></div>
   </div>
 </header>
 

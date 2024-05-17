@@ -3,9 +3,39 @@ require_once '../middlewares/checkAuthentication.php';
 
 // Check if the user is logged in
 checkIfUserIsLoggedIn();
+
+
+
+$conn = oci_connect('saiman', 'Stha_12', '//localhost/xe');
+if (!$conn) {
+    $m = oci_error();
+    $_SESSION['error']= $m['message'];
+    exit();
+} else {
+    // print "Connected to Oracle!";
+    $_SESSION['notification'] = "Connected to Oracle!";
+}
+
+
+if (isset($_SESSION['user']['EMAIL'])) {
+    $userEmail = $_SESSION['user']['EMAIL'];
+} else {
+    die("User not found");
+}
+
+    
+$query = "SELECT * FROM Customer WHERE Email = :email";
+$statement = oci_parse($conn, $query);
+oci_bind_by_name($statement, ":email", $userEmail);
+oci_execute($statement);
+
+// Fetch the user record
+$fetch = oci_fetch_assoc($statement);
+
+
+oci_close($conn);
+
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -33,7 +63,7 @@ checkIfUserIsLoggedIn();
             <div class="profile" id="profile">
                 <div class="profile-header">
                     <h1>Customer Profile</h1>
-                    <p>Welcome back, Saiman!</p>
+                    <p>Welcome back , <?php echo $fetch['FIRST_NAME']; ?></p>
                     <div class="profile-picture">
                         <img src="https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Profile Picture">
                         <div class="edit-profile-icon">
@@ -45,35 +75,35 @@ checkIfUserIsLoggedIn();
                     <div class="profile-row">
                         <div class="profile-field">
                             <label for="first-name">First Name</label>
-                            <input id="first-name" type="text" value="Saiman" readonly>
+                            <input id="first-name" type="text" value="<?php echo $fetch['FIRST_NAME']; ?>" readonly>
                         </div>
                         <div class="profile-field">
                             <label for="last-name">Last Name</label>
-                            <p>Shrestha</p>
+                            <input id="first-name" type="text" value="<?php echo $fetch['LAST_NAME']; ?>" readonly>
                         </div>
                     </div>
                     <div class="profile-row">
                         <div class="profile-field">
                             <label for="gender">Gender</label>
-                            <select id="gender" disabled>
-                                <option value="male" selected>Male</option>
-                                <option value="female">Female</option>
-                                <option value="other">Other</option>
+                            <select id="gender" >
+                                    <option value=" <?php echo $fetch['GENDER'] == 'male' ? 'selected' : ''; ?>">Male</option>
+                                    <option value=" <?php echo $fetch['GENDER'] == 'female' ? 'selected' : ''; ?>">Female</option>
+                                    <option value=" <?php echo $fetch['GENDER'] == 'other' ? 'selected' : ''; ?>">Other</option>
                             </select>
                         </div>
                         <div class="profile-field">
                             <label for="dob">Date of Birth</label>
-                            <input id="dob" type="date" value="1990-01-01" readonly>
+                            <input id="dob" type="date" value="<?php echo $fetch['DATE_OF_BIRTH']; ?>" readonly>
                         </div>
                     </div>
                     <div class="profile-row">
                         <div class="profile-field">
                             <label for="address">Address</label>
-                            <input id="address" type="text" value="Kathmandu" readonly>
+                            <input id="address" type="text" value="<?php echo $fetch['ADDRESS']; ?>" readonly>
                         </div>
                         <div class="profile-field">
                             <label for="number">Contact Number</label>
-                            <input id="number" type="number" value="1990-01-01" readonly>
+                            <input id="number" type="number" value="<?php echo $fetch['CONTACT_NUMBER']; ?>" readonly>
                         </div>
                     </div>
                     <button id="edit-profile">Edit Profile</button>
@@ -82,50 +112,50 @@ checkIfUserIsLoggedIn();
                 <div class="profile-row">
                         <div class="profile-field">
                             <label for="first-name">First Name</label>
-                            <input id="first-name" type="text" value="Saiman" readonly>
+                            <input id="first-name" type="text" value="<?php echo $fetch['FIRST_NAME']; ?>" >
                         </div>
                         <div class="profile-field">
                             <label for="last-name">Last Name</label>
-                            <p>saiman</p>
+                            <input id="first-name" type="text" value="<?php echo $fetch['LAST_NAME']; ?>" >
                         </div>
                     </div>
                     <div class="profile-row">
                         <div class="profile-field">
                             <label for="gender">Gender</label>
                             <select id="gender" disabled>
-                                <option value="male" selected>Male</option>
-                                <option value="female">Female</option>
-                                <option value="other">Other</option>
+                                <option value=" <?php echo $fetch['GENDER'] == 'male' ? 'selected' : ''; ?>">Male</option>
+                                <option value=" <?php echo $fetch['GENDER'] == 'female' ? 'selected' : ''; ?>">Female</option>
+                                <option value=" <?php echo $fetch['GENDER'] == 'other' ? 'selected' : ''; ?>">Other</option>
                             </select>
                         </div>
                         <div class="profile-field">
                             <label for="dob">Date of Birth</label>
-                            <input id="dob" type="date" value="2000-01-01" readonly>
+                            <input id="dob" type="date" value="<?php echo $fetch['DATE_OF_BIRTH']; ?>" >
                         </div>
                     </div>
                     <div class="profile-row">
                         <div class="profile-field">
                             <label for="address">Address</label>
-                            <input id="address" type="text" value="Kathmandu" readonly>
+                            <input id="address" type="text" value="<?php echo $fetch['ADDRESS']; ?>" >
                         </div>
                         <div class="profile-field">
                             <label for="number">Contact Number</label>
-                            <input id="number" type="number" value="1990-01-01" readonly>
+                            <input id="number" type="number" value="<?php echo $fetch['CONTACT_NUMBER']; ?>" >
                         </div>
                     </div>
                     <div class="profile-row">
                         <div class="profile-field">
                             <label for="email">Email</label>
-                            <input id="email" type="email" value="saiman@example.com">
+                            <input id="email" type="email" value="<?php echo $fetch['EMAIL']; ?>">
                         </div>
                         <div class="profile-field">
                             <label for="username">Username</label>
-                            <input id="username" type="text" value="saiman">
+                            <input id="username" type="text" value="<?php echo $fetch['USERNAME']; ?>">
                         </div>
                     </div>
                     <div class="profile-row">
                         <div class="profile-field">
-                            <label for="new-password">New Password</label>
+                            <label for="new-password">Old Password</label>
                             <input id="new-password" type="password">
                         </div>
                         <div class="profile-field">
@@ -134,7 +164,7 @@ checkIfUserIsLoggedIn();
                         </div>
                     </div>
                     <div class="profile-row">
-                        <button id="save-profile">Save Profile</button>
+                        <button  name="edit" id="save-profile">Save Profile</button>
                     </div>
                 </div>
             </div>
