@@ -106,9 +106,8 @@ ALTER TABLE Wishlist ADD FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_
 DROP TABLE Discount CASCADE CONSTRAINTS;
 CREATE TABLE Discount(
     Discount_ID NUMBER(10) PRIMARY KEY,
-    Discount_Percent VARCHAR2(100) NOT NULL,
-    Valid_From DATE NOT NULL,
-    Valid_To DATE NOT NULL
+    Discount_Percent VARCHAR2(100) NOT NULL
+ 
 );
 
 DROP TABLE Review CASCADE CONSTRAINTS;
