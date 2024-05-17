@@ -24,11 +24,9 @@ if (isset($_SESSION['user']['EMAIL'])) {
 }
 
     
-$query = "SELECT * FROM Customer WHERE Email = :email";
+$query = "SELECT * FROM Customer WHERE Email = '$userEmail'";
 $statement = oci_parse($conn, $query);
-oci_bind_by_name($statement, ":email", $userEmail);
 oci_execute($statement);
-
 // Fetch the user record
 $fetch = oci_fetch_assoc($statement);
 
@@ -93,7 +91,7 @@ oci_close($conn);
                         </div>
                         <div class="profile-field">
                             <label for="dob">Date of Birth</label>
-                            <input id="dob" type="date" value="<?php echo $fetch['DATE_OF_BIRTH']; ?>" readonly>
+                            <input id="dob" type="date" value="<?php echo date('Y-m-d', strtotime($fetch['DATE_OF_BIRTH'])); ?>" readonly>
                         </div>
                     </div>
                     <div class="profile-row">
@@ -122,7 +120,7 @@ oci_close($conn);
                     <div class="profile-row">
                         <div class="profile-field">
                             <label for="gender">Gender</label>
-                            <select id="gender" disabled>
+                            <select id="gender" >
                                 <option value=" <?php echo $fetch['GENDER'] == 'male' ? 'selected' : ''; ?>">Male</option>
                                 <option value=" <?php echo $fetch['GENDER'] == 'female' ? 'selected' : ''; ?>">Female</option>
                                 <option value=" <?php echo $fetch['GENDER'] == 'other' ? 'selected' : ''; ?>">Other</option>
@@ -130,7 +128,7 @@ oci_close($conn);
                         </div>
                         <div class="profile-field">
                             <label for="dob">Date of Birth</label>
-                            <input id="dob" type="date" value="<?php echo $fetch['DATE_OF_BIRTH']; ?>" >
+                            <input id="dob" type="date" value="<?php echo date('Y-m-d', strtotime($fetch['DATE_OF_BIRTH'])); ?>">
                         </div>
                     </div>
                     <div class="profile-row">
