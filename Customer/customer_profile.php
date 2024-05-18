@@ -74,7 +74,7 @@ if ($opassword === $npassword) {
 
 
     $query_update = "UPDATE CUSTOMER 
-              SET FIRST_NAME = '$first_name', LAST_NAME = '$last_name', EMAIL = $email,ADDRESS='$address',GENDER='$gender',USERNAME='$Uname',CONTACT_NUMBER = '$number', PASSWORD = '$npassword', DATE_OF_BIRTH = TO_DATE('$dateOfBirth', 'YYYY-MM-DD') 
+              SET FIRST_NAME = '$first_name', LAST_NAME = '$last_name', EMAIL = '$email',ADDRESS='$address',GENDER='$gender',USERNAME='$Uname',CONTACT_NUMBER = '$number', PASSWORD = '$npassword', DATE_OF_BIRTH = TO_DATE('$dateOfBirth', 'YYYY-MM-DD') 
               WHERE CUSTOMER_ID = '$customerId'";
 
 

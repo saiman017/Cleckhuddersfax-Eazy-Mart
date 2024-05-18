@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+if ($_SESSION['user']['TRADER_ID'] !== null) {
+    header('Location: ../trader/trader_dashboard.php');
+    exit();
+}
+
+print_r($_SESSION['user']);
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,7 +107,7 @@
 </style>
 <body>
 
-<div><?php include('head.php');?></div>
+<div><?php include('head.php'); ?></div>
     <section class="home">
   <div class="img">
     <img src="../assets/images/FriutBanner.jpg" alt="Fresh fruits">
