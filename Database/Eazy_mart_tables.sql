@@ -2,7 +2,8 @@ DROP TABLE Management CASCADE CONSTRAINTS;
 CREATE TABLE Management(
     Management_ID NUMBER(10) PRIMARY KEY,
     User_Name VARCHAR2(100) NOT NULL UNIQUE,
-    Password VARCHAR2(200) NOT NULL  
+    Password VARCHAR2(200) NOT NULL ,
+    Role VARCHAR2(10)  NOT NULL
 );
 
 -- added gender 
@@ -20,7 +21,7 @@ CREATE TABLE Trader(
     Password VARCHAR2(100) NOT NULL,
     Register_Date DATE NOT NULL,
     Profile_Image BLOB ,
-    Role VARCHAR2(10) 
+    Role VARCHAR2(10) NOT NULL
 );
 
 
@@ -52,7 +53,7 @@ CREATE TABLE Customer(
     Username VARCHAR2(100) NOT NULL  UNIQUE,
     Password VARCHAR2(100) NOT NULL ,
     Profile_Image BLOB ,
-    Role VARCHAR2(10)
+    Role VARCHAR2(10)  NOT NULL
 );
 
 DROP TABLE Category CASCADE CONSTRAINTS;

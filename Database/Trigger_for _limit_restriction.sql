@@ -142,6 +142,39 @@ END;
 /
 
 
+CREATE OR REPLACE TRIGGER trg_role_customer
+BEFORE INSERT ON Customer
+FOR EACH ROW
+BEGIN
+    IF :NEW.Role IS NULL THEN
+        :NEW.Role := 'customer'; -- Default role
+    END IF;
+END;
+/
+
+
+
+CREATE OR REPLACE TRIGGER trg_role_management
+BEFORE INSERT ON Management
+FOR EACH ROW
+BEGIN
+    IF :NEW.Role IS NULL THEN
+        :NEW.Role := 'admin'; -- Default role
+    END IF;
+END;
+/
+
+
+CREATE OR REPLACE TRIGGER trg_role_admin
+BEFORE INSERT ON Trader
+FOR EACH ROW
+BEGIN
+    IF :NEW.Role IS NULL THEN
+        :NEW.Role := 'trader'; -- Default role
+    END IF;
+END;
+/
+
 
 
 
