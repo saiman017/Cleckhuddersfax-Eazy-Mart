@@ -19,7 +19,8 @@ CREATE TABLE Trader(
     UserName VARCHAR2(100) NOT NULL  UNIQUE,
     Password VARCHAR2(100) NOT NULL,
     Register_Date DATE NOT NULL,
-    Profile_Image BLOB      
+    Profile_Image BLOB ,
+    Role VARCHAR2(10) 
 );
 
 
@@ -50,7 +51,8 @@ CREATE TABLE Customer(
     Register_Date DATE NOT NULL,
     Username VARCHAR2(100) NOT NULL  UNIQUE,
     Password VARCHAR2(100) NOT NULL ,
-    Profile_Image BLOB 
+    Profile_Image BLOB ,
+    Role VARCHAR2(10)
 );
 
 DROP TABLE Category CASCADE CONSTRAINTS;
