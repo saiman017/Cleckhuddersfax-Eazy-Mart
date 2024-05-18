@@ -138,11 +138,11 @@ if($error): ?>
                     <div class="flex flex-wrap -mx-3 mb-3">
                         <div class="w-full px-3">
                             <input type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600" id="terms"
-                                name="terms">
-                            <label for="terms" class="ml-2 text-gray-700">I agree to terms and conditions</label>
+                                name="terms" required>
+                            <label for="terms" class="ml-2 text-gray-700">I agree to <a href="../Support/Terms_and_conditions.php">terms and conditions</a></label>
                         </div>
                     </div>
-                    <button type="submit" name="submit" onclick="submitShopDetailsForm()"
+                    <button type="submit" name="submit" id="submit"
                         class="submit-btn">Next</button>
                 </form>
                 <div class="text-center mt-2">
@@ -156,6 +156,5 @@ if($error): ?>
 
 
 </body>
-
 
 </html>

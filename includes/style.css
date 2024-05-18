@@ -1343,7 +1343,8 @@ margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 70px;
+  margin-bottom: 100px;
 }
 
 .customer-profile  .profile {
@@ -1392,7 +1393,7 @@ margin-bottom: 0.5rem;
   position: relative;
   margin: 0 auto; 
   border-color: #666;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .customer-profile .profile-picture img {
@@ -1431,9 +1432,9 @@ margin-bottom: 0.5rem;
 
 .customer-profile .profile-field input, .profile-field select, .profile-field p {
   width: 100%;
-  padding: 10px;
+  padding: 15px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 35px;
   font-size: 1rem;
 }
 
@@ -1446,12 +1447,79 @@ margin-bottom: 0.5rem;
   color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 35px;
   cursor: pointer;
 }
 
 .customer-profile  button:hover {
   background-color: crimson;
 }
+
+
+/* Chnage password */
+
+/* Tailwind CSS included via CDN link in the HTML head */
+
+.change-password {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+  flex-direction: column;
+}
+
+.change-password .right-side {
+  width: 90%;
+  max-width: 500px;
+  padding: 40px;
+  background-color: #fcfafa;
+  border-radius: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.change-password h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.change-password .change-form {
+  margin-top: 20px;
+}
+
+.change-password .input-group {
+  margin-bottom: 15px;
+}
+
+.change-password .input-group label {
+  font-weight: 500;
+  padding-bottom: 8px;
+}
+
+.change-password .input-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  background-color: #f3f4f6;
+}
+
+.change-password .submit-btn {
+  width: 100%;
+  background-color: #ffb66d;
+  color: #ffffff;
+  padding: 10px;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.change-password .submit-btn:hover {
+  background-color: #ff9170;
+}
+
 
 

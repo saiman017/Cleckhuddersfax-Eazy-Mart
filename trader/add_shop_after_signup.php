@@ -29,7 +29,7 @@ if(isset($_POST['add-shop'])) {
 
 
     // Check if email,shop_name or contact number already exists
-    $query_check = "SELECT EMAIL,SHOP_NAME,CONTACT_NUMBER FROM Shop WHERE Email = '$email' OR SHOP_NAME = '$shopName' OR Contact_Number = '$number')";
+    $query_check = "SELECT EMAIL,SHOP_NAME,CONTACT_NUMBER FROM Shop WHERE Email = '$email' OR SHOP_NAME = '$shopName' OR Contact_Number = '$number'";
     $statement_check = oci_parse($conn, $query_check);
     oci_execute($statement_check);
     $row = oci_fetch_assoc($statement_check);
@@ -51,14 +51,14 @@ if(isset($_POST['add-shop'])) {
     
 
     $traderID = $_SESSION['user']['TRADER_ID'];
-    $query = "INSERT INTO Shop (SHOP_NAME,EMAIL,Shop_Location,CONTACT_NUMBER,SHOP_IMAGE,TRADER_ID) VALUES ('$shopName','$email','$location','$number',NULL,'$traderID')";
+    $query = "INSERT INTO Shop (SHOP_NAME,EMAIL,Shop_Location,CONTACT_NUMBER,TRADER_ID) VALUES ('$shopName','$email','$location','$number','$traderID')";
     
     $statement = oci_parse($conn, $query);
     $result = oci_execute($statement);
 
     if($result) {
         oci_commit($conn);
-        header("Location: ../trader/trader_dashboard.php");
+        header("Location: trader_dashboard.php");
         exit(); 
     } else {
         $error = oci_error($statement);

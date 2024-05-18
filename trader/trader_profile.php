@@ -31,17 +31,40 @@ oci_execute($statement);
 $fetch = oci_fetch_assoc($statement);
 
 
-oci_close($conn);
+if (isset($_POST['saveProfile'])) {
+  // Retrieve form data
+  $first_name = $_POST['first_name'];
+  $last_name = $_POST['last_name'];
+  $traderId = $_SESSION['user']['TRADER_ID'];
+  $number = $_POST['contact_number'];
+  $address = $_POST['address'];
+  $Uname = $_POST['username'];
 
+  $query = "UPDATE TRADER 
+            SET FIRST_NAME = '$first_name', LAST_NAME = '$last_name', ADDRESS = '$address', USERNAME = '$Uname', CONTACT_NUMBER = '$number' 
+            WHERE TRADER_ID = '$traderId'";
+
+  $statement = oci_parse($conn, $query);
+  $result = oci_execute($statement);
+
+  if ($result) {
+      oci_commit($conn);
+      header("Location: trader_profile.php");
+      exit();
+  } else {
+      echo "Error updating profile!";
+  }
+
+  oci_close($conn);
+}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Trader Dashboard</title>
+    <title>Trader Profile</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -72,6 +95,7 @@ body {
   display: flex;
   padding-bottom: 10px;
   margin-bottom: 20px;
+  margin-top: 30px;
 }
 
 .trader-profile  .main-content {
@@ -128,7 +152,7 @@ body {
   position: relative;
   margin: 0 auto; 
   border-color: #666;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .trader-profile .profile-picture img {
@@ -169,7 +193,7 @@ body {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 35px;
   font-size: 1rem;
 }
 
@@ -182,7 +206,7 @@ body {
   color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 35px;
   cursor: pointer;
 }
 
@@ -266,116 +290,78 @@ body {
         </div>
         <div class="trader-profile">
     <div class="container">
-        <div class="main-content">
-            <div class="profile" id="profile">
-                <div class="profile-header">
-                    <h1>Trader Profile</h1>
-                    <p>Welcome back, <?php echo $fetch['FIRST_NAME']; ?>!</p>
-                    <div class="profile-picture">
-                        <img src="https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Profile Picture">
-                        <div class="edit-profile-icon">
-                            <i class="fas fa-pencil-alt"></i>
+    <div class="main-content">
+                <div class="profile" id="profile">
+                    <div class="profile-header">
+                        <h1>My Profile</h1>
+                        <p>Welcome back, <?php echo $fetch['FIRST_NAME']; ?></p>
+                        <div class="profile-picture">
+                            <img src="https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Profile Picture">
+                            <div class="edit-profile-icon">
+                                <i class="fas fa-pencil-alt"></i>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="profile-content" id="profile-content">
-                    <div class="profile-row">
-                        <div class="profile-field">
-                            <label for="first-name">First Name</label>
-                            <input id="first-name" type="text" value="<?php echo $fetch['FIRST_NAME']; ?>" readonly>
+                    <div class="profile-content" id="profile-content">
+                        <div class="profile-row">
+                            <div class="profile-field">
+                                <label for="first-name">First Name</label>
+                                <input id="first-name" type="text" name="first_name" value="<?php echo $fetch['FIRST_NAME']; ?>" readonly>
+                            </div>
+                            <div class="profile-field">
+                                <label for="last-name">Last Name</label>
+                                <input id="last-name" type="text" name="last_name" value="<?php echo $fetch['LAST_NAME']; ?>" readonly>
+                            </div>
                         </div>
-                        <div class="profile-field">
-                            <label for="last-name">Last Name</label>
-                            <input id="first-name" type="text" value="<?php echo $fetch['LAST_NAME']; ?>" readonly>
+                        <div class="profile-row">
+                            <div class="profile-field">
+                                <label for="address">Address</label>
+                                <input id="address" type="text" name="address" value="<?php echo $fetch['ADDRESS']; ?>" readonly>
+                            </div>
+                            <div class="profile-field">
+                                <label for="number">Contact Number</label>
+                                <input id="number" type="number" name="contact_number" value="<?php echo $fetch['CONTACT_NUMBER']; ?>" readonly>
+                            </div>
                         </div>
+                        <button id="edit-profile">Edit Profile</button>
+                        <button id="change-password">Change Password</button>
                     </div>
-                    <div class="profile-row">
-                        <div class="profile-field">
-                            <label for="gender">Gender</label>
-                            <select id="gender" disabled>
-                                <option value="male" selected>Male</option>
-                                <option value="female">Female</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="profile-field">
-                            <label for="dob">Date of Birth</label>
-                            <input id="dob" type="date" value="<?php echo date('Y-m-d', strtotime($fetch['DATE_OF_BIRTH'])); ?>" readonly>
-                        </div>
-                    </div>
-                    <div class="profile-row">
-                        <div class="profile-field">
-                            <label for="address">Address</label>
-                            <input id="address" type="text" value="<?php echo $fetch['ADDRESS']; ?>" readonly>
-                        </div>
-                        <div class="profile-field">
-                            <label for="number">Contact Number</label>
-                            <input id="number" type="number" value="<?php echo $fetch['CONTACT_NUMBER']; ?>" readonly>
-                        </div>
-                    </div>
-                    <button id="edit-profile">Edit Profile</button>
-                </div>
-                <div class="profile-content" id="edit-profile-content" style="display: none;">
-                <div class="profile-row">
-                        <div class="profile-field">
-                            <label for="first-name">First Name</label>
-                            <input id="first-name" type="text" value="<?php echo $fetch['FIRST_NAME']; ?>" >
-                        </div>
-                        <div class="profile-field">
-                            <label for="last-name">Last Name</label>
-                            <input id="first-name" type="text" value="<?php echo $fetch['LAST_NAME']; ?>" >
-                        </div>
-                    </div>
-                    <div class="profile-row">
-                        <div class="profile-field">
-                            <label for="gender">Gender</label>
-                            <select id="gender" disabled>
-                                <option value="male" selected>Male</option>
-                                <option value="female">Female</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="profile-field">
-                            <label for="dob">Date of Birth</label>
-                            <input id="dob" type="date" value="<?php echo date('Y-m-d', strtotime($fetch['DATE_OF_BIRTH'])); ?>" >
-                        </div>
-                    </div>
-                    <div class="profile-row">
-                        <div class="profile-field">
-                            <label for="address">Address</label>
-                            <input id="address" type="text" value="<?php echo $fetch['ADDRESS']; ?>" >
-                        </div>
-                        <div class="profile-field">
-                            <label for="number">Contact Number</label>
-                            <input id="number" type="number" value="<?php echo $fetch['CONTACT_NUMBER']; ?>" >
-                        </div>
-                    </div>
-                    <div class="profile-row">
-                        <div class="profile-field">
-                            <label for="email">Email</label>
-                            <input id="email" type="email" value="<?php echo $fetch['EMAIL']; ?>">
-                        </div>
-                        <div class="profile-field">
-                            <label for="username">Username</label>
-                            <input id="username" type="text" value="<?php echo $fetch['USERNAME']; ?>">
-                        </div>
-                    </div>
-                    <div class="profile-row">
-                        <div class="profile-field">
-                            <label for="old-password">Old Password</label>
-                            <input id="old-password" type="password">
-                        </div>
-                        <div class="profile-field">
-                            <label for="new-password">New Password</label>
-                            <input id="new-password" type="password">
-                        </div>
-                    </div>
-                    <div class="profile-row">
-                        <button name="save" id="save-profile">Save Profile</button>
+                    <div class="profile-content" id="edit-profile-content" style="display: none;">
+                        <!-- Edit profile form -->
+                        <form action="" method="POST">
+                            <div class="profile-row">
+                                <div class="profile-field">
+                                    <label for="first-name">First Name</label>
+                                    <input id="first-name" type="text" name="first_name" value="<?php echo $fetch['FIRST_NAME']; ?>">
+                                </div>
+                                <div class="profile-field">
+                                    <label for="last-name">Last Name</label>
+                                    <input id="last-name" type="text" name="last_name" value="<?php echo $fetch['LAST_NAME']; ?>">
+                                </div>
+                            </div>
+                            <div class="profile-row">
+                                <div class="profile-field">
+                                    <label for="address">Address</label>
+                                    <input id="address" type="text" name="address" value="<?php echo $fetch['ADDRESS']; ?>">
+                                </div>
+                                <div class="profile-field">
+                                    <label for="number">Contact Number</label>
+                                    <input id="number" type="number" name="contact_number" value="<?php echo $fetch['CONTACT_NUMBER']; ?>">
+                                </div>
+                            </div>
+                            <div class="profile-row">
+                                <div class="profile-field">
+                                    <label for="username">Username</label>
+                                    <input id="username" type="text" name="username" value="<?php echo $fetch['USERNAME']; ?>">
+                                </div>
+                            </div>
+                            <div class="profile-row">
+                                <button name="saveProfile" id="save-profile">Save Profile</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 
     </div>

@@ -41,26 +41,22 @@ if(isset($_POST['submit']))
         } elseif ($number === $row['Contact_Number']) {
             $message = "Contact number already exists. Please use a different one.";
         }
-        // echo '<script>alert("' . $message . '")</script>';
         $_SESSION['error'] = $message;
         exit();
     }
 
     // password validation
     if ($password !== $cpassword) {
-        // echo '<script>alert("Password and Confirm Password do not match. Please try again.")</script>';
         $_SESSION['error'] = "Password and Confirm Password do not match. Please try again.";
         exit();  
     }
     
     if (strlen($password) < 8 || strlen($password) > 32 ) {
-        // echo '<script>alert("Password must be at least 8 or less than 32 characters long.")</script>';
         $_SESSION['error'] = "Password must be at least 8 or less than 32 characters long.";
         exit();
     }
 
     if (!preg_match('/[!@#$%^&*()\-_=+]/', $password)) {
-        // echo '<script>alert("Password must contain at least one special charcater.")</script>';
         $_SESSION['error'] = "Password must contain at least one special charcater.";
         exit();
     }
@@ -75,12 +71,11 @@ if(isset($_POST['submit']))
 
     if($result) {
         oci_commit($conn);
-        header("Location: ../Login/customer_signin.php");
+        header("Location: ../Login/trader_signup.php");
         exit(); 
     }
     else {
         $error = oci_error($statement);
-        // echo "Error: " . $error['message']; // Display Oracle error message
         $_SESSION[''] = $error['message'];
     }
 

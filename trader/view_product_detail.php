@@ -1,43 +1,45 @@
 <?php
-session_start(); // Start the session
+session_start();
 
+// Include authentication middleware
 require_once '../middlewares/checkAuthentication.php';
 
 // Check if the user is logged in
 checkIfUserIsLoggedIn();
 
-// Establish connection to Oracle database
+// Database connection
 $conn = oci_connect('saiman', 'Stha_12', '//localhost/xe');
 if (!$conn) {
-    $m = oci_error();
-    $_SESSION['error'] = $m['message'];
+    $_SESSION['error'] = "Failed to connect to the database.";
     exit();
-} else {
-    $_SESSION['notification'] = "Connected to Oracle!";
 }
 
-
-// Fetch the shop details
-$traderid = $_SESSION['user']['TRADER_ID'];
-$query_shop = "SELECT * FROM Shop WHERE Trader_id = '$traderid'";
+// Fetch shop details
+$traderId = $_SESSION['user']['TRADER_ID'];
+$query_shop = "SELECT * FROM Shop WHERE Trader_id = :trader_id";
 $statement_shop = oci_parse($conn, $query_shop);
+oci_bind_by_name($statement_shop, ':trader_id', $traderId);
 oci_execute($statement_shop);
-
-// Fetch the shop details
 $row_shop = oci_fetch_assoc($statement_shop);
+
+if (!$row_shop) {
+    $_SESSION['error'] = "Shop details not found.";
+    exit();
+}
+
 $shopId = $row_shop['SHOP_ID'];
 
 if (isset($_POST['addproduct'])) {
+    // Retrieve and sanitize form data
     $productName = $_POST['productName'];
-    $productDescription = $_POST['productDes'];
+    $productDescription = $_POST['productDescription'];
     $productPrice = $_POST['productPrice'];
     $productStock = $_POST['productStock'];
     $minOrder = $_POST['minOrder'];
     $maxOrder = $_POST['maxOrder'];
-    $productPhoto = $_POST['productPhoto'];
     $allergy = $_POST['allergy'];
-    $discount = $_POST['discount'];
-    $categories = $_POST['category'];
+    $categories = $_POST['categories'];
+
 
     // Check if product name already exists
     $query_check = "SELECT PRODUCT_NAME FROM Product WHERE PRODUCT_NAME = '$productName'";
@@ -51,26 +53,28 @@ if (isset($_POST['addproduct'])) {
         exit();
     }
 
-    // Insert new product into database
-    $query = "INSERT INTO Product (PRODUCT_NAME, DESCRIPTION, PRICE, STOCK_AVAILABLE, MIN_ORDER, MAX_ORDER, ALLERGY, PRODUCT_IMAGE, SHOP_ID, DISCOUNT_ID, CATEGORY_ID) 
-          VALUES ('$productName', '$productDescription', '$productPrice', '$productStock', '$minOrder', '$maxOrder', '$allergy', '$productPhoto', '$shopId', '$discount', '$categories')";
+  // Insert new product into database
+  $query = "INSERT INTO Product (PRODUCT_NAME, DESCRIPTION, PRICE, STOCK_AVAILABLE, MIN_ORDER, MAX_ORDER, ALLERGY, PRODUCT_IMAGE, SHOP_ID, DISCOUNT_ID, CATEGORY_ID) 
+  VALUES ('$productName', '$productDescription', '$productPrice', '$productStock', '$minOrder', '$maxOrder', '$allergy', '$productPhoto', '$shopId', '$discount', '$categories')";
     $statement = oci_parse($conn, $query);
     $result = oci_execute($statement);
 
+
     if ($result) {
         oci_commit($conn);
+        $_SESSION['success'] = "Product added successfully.";
         header("Location: view_product_detail.php");
         exit();
     } else {
         $error = oci_error($statement);
         $_SESSION['error'] = $error['message'];
+        header("Location: view_product_detail.php");
         exit();
     }
 }
 
-oci_close($conn); // Close database connection
+oci_close($conn);
 ?>
-
 
 
 
@@ -250,30 +254,8 @@ oci_close($conn); // Close database connection
                             </div>
                         </div>
                         <div>
-                        <div>
-            <label for="productName" class="block text-sm font-medium text-gray-700">Product Name</label>
-            <input type="text" name="productName" id="productName" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md placeholder-gray-400 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-300 bg-gray-100 hover:bg-gray-200">
-        </div>
-        <div>
-                <label for="discount" class="block text-sm font-medium text-gray-700">Discount</label>
-                <select name="discount" id="discount" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md placeholder-gray-400 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-300 bg-gray-100 hover:bg-gray-200">
-                    <option value="0">No discount</option>
-                    <?php
-    // Include the PHP code for fetching discounts here
-    $query_discounts = "SELECT * FROM Discount";
-    $statement_discounts = oci_parse($conn, $query_discounts);
-    oci_execute($statement_discounts);
-    while ($row_discount = oci_fetch_assoc($statement_discounts)) {
-        echo '<option value="' . $row_discount['DISCOUNT_ID'] . '">' . $row_discount['Discount_Percent'] . '</option>';
-    }
-?>
-                </select>
-            </div>
             <div>
                 <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
-                <select name="category" id="category" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md placeholder-gray-400 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-300 bg-gray-100 hover:bg-gray-200">
-                    <option value="0">Select category</option>
-                    <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
                 <select name="category" id="category" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md placeholder-gray-400 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-300 bg-gray-100 hover:bg-gray-200">
                     <option value="0">Select category</option>
                     <?php
@@ -285,7 +267,7 @@ oci_close($conn); // Close database connection
                                 echo '<option value="' . $row_category['CATEGORY_ID'] . '">' . $row_category['CATEGORY_TYPE'] . '</option>';
                             }
                             ?>
-    
+
                 </select>
             </div>
                         <div>
