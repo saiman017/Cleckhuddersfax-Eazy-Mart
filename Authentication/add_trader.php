@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$conn = oci_connect('saiman', 'Stha_12', '//localhost/xe');
+$conn = oci_connect('saiman', 'Stha_12', '127.0.0.1:1521/xe');
 if (!$conn) {
     $m = oci_error();
     $_SESSION['error']=$m['message'];
