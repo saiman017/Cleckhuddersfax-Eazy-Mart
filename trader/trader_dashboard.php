@@ -1,3 +1,41 @@
+<?php
+require_once '../middlewares/checkAuthentication.php';
+
+// Check if the user is logged in
+checkIfUserIsLoggedIn();
+
+
+
+$conn = oci_connect('saiman', 'Stha_12', '//localhost/xe');
+if (!$conn) {
+    $m = oci_error();
+    $_SESSION['error']= $m['message'];
+    exit();
+} else {
+    // print "Connected to Oracle!";
+    $_SESSION['notification'] = "Connected to Oracle!";
+}
+
+
+if (isset($_SESSION['user']['EMAIL'])) {
+    $userEmail = $_SESSION['user']['EMAIL'];
+} else {
+  $_SESSION['error'] = "User not found";;
+}
+
+    
+$query = "SELECT * FROM Trader WHERE Email = '$userEmail'";
+$statement = oci_parse($conn, $query);
+oci_execute($statement);
+// Fetch the user record
+$fetch = oci_fetch_assoc($statement);
+
+
+oci_close($conn);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,8 +51,8 @@
     <div class="grid-container">
 
     <header class="header">
-  <div class="menu-icon">
-    <span class="material-icons-outlined">menu</span>
+    <div class="menu-icon" onclick="openSidebar()">
+      <span class="material-icons-outlined">menu</span>
   </div>
   <div class="search-bar">
     <input type="text" placeholder="Search...">
@@ -24,7 +62,7 @@
     <div class="profile-image">
       <img src="../assets/images/Shop/butcher 1.jpg" alt="Profile Image">
     </div>
-    <div class="profile-name">Profile</div>
+    <div class="profile-name"><?php echo $fetch['FIRST_NAME']; ?></div>
   </div>
 </header>
 
@@ -35,6 +73,7 @@
     <div class="sidebar-brand">
       <a href="./trader_dashboard.php"><img src="../assets/images/icons/logo.png" alt=""></a>
     </div>
+    <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
   </div>
 
   <ul class="sidebar-list">
@@ -94,11 +133,12 @@
             </div>
           </div>
 
-          <div class="card">
+          <a href="add_shop_after_signup.php"><div class="card">
             <div class="card-inner">
-              <h2>Graph 2</h2>
+              <h2>Add shop</h2>
             </div>
           </div>
+          </a>
 
           <div class="card">
             <div class="card-inner">
@@ -114,6 +154,27 @@
         </div>       
       </main>
     </div>
+
+    <script >
+      // SIDEBAR TOGGLE
+
+      let sidebarOpen = false;
+const sidebar = document.getElementById('sidebar');
+
+function openSidebar() {
+  if (!sidebarOpen) {
+    sidebar.classList.add('sidebar-responsive');
+    sidebarOpen = true;
+  }
+}
+
+function closeSidebar() {
+  if (sidebarOpen) {
+    sidebar.classList.remove('sidebar-responsive');
+    sidebarOpen = false;
+  }
+}
+  </script>
 
   </body>
 </html>

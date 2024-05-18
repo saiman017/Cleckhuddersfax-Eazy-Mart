@@ -1,6 +1,6 @@
 <?php
 // Establish Oracle database connection
-$connection = oci_connect('saiman', 'Stha_12', '//localhost/xe');
+$connection = oci_connect('c##saiman', 'Stha_12', '//192.168.1.69/XE');
 
 if (!$connection) {
     $error_message = oci_error();

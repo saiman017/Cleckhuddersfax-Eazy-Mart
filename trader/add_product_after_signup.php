@@ -1,3 +1,73 @@
+<?php
+require_once '../middlewares/checkAuthentication.php';
+
+// Check if the user is logged in
+checkIfUserIsLoggedIn();
+
+
+
+$conn = oci_connect('saiman', 'Stha_12', '//localhost/xe');
+if (!$conn) {
+    $m = oci_error();
+    $_SESSION['error']= $m['message'];
+    exit();
+} else {
+    // print "Connected to Oracle!";
+    $_SESSION['notification'] = "Connected to Oracle!";
+}
+
+
+
+if(isset($_POST['add-shop'])) {
+    // Retrieve form data
+    $email = $_POST['shopEmail'];
+    $shopName = $_POST['shopName'];
+    $number = $_POST['shopContactNumber'];
+    $location = $_POST['location'];
+    $shop_image = $_POST['shopImage'];
+    
+
+
+    // Check if email, username, or contact number already exists
+    $query_check = "SELECT EMAIL,SHOP_NAME,CONTACT_NUMBER FROM Shop WHERE Email = '$email' OR SHOP_NAME = '$shopName' OR Contact_Number = '$number')";
+    $statement_check = oci_parse($conn, $query_check);
+    oci_execute($statement_check);
+    $row = oci_fetch_assoc($statement_check);
+
+
+    if ($row !== false) {
+        $message = "Email, Shop name, or contact number already exists. Please use different ones.";
+        if ($email === $row['EMAIL']) {
+            $message = "Email already exists. Please use a different email.";
+        } elseif ($shopName === $row['SHOP_NAME']) {
+            $message = "Shop name already exists. Please use a different username.";
+        } elseif ($number === $row['CONTACT_NUMBER']) {
+            $message = "Contact number already exists. Please use a different one.";
+        }
+        $_SESSION['error'] = $message;
+        header("Location: ../trader/add_shop_after_signup.php");
+        exit();
+    }
+
+    $traderID = $_SESSION['user']['TRADER_ID'];
+    $query = "INSERT INTO Shop (SHOP_NAME,EMAIL,Shop_Location,CONTACT_NUMBER,SHOP_IMAGE,TRADER_ID) VALUES ('$shopName','$email','$location','$number',NULL,'$traderID')";
+    
+    $statement = oci_parse($conn, $query);
+    $result = oci_execute($statement);
+
+    if($result) {
+        oci_commit($conn);
+        header("Location: ../trader/trader_dashboard.php");
+        exit(); 
+    } else {
+        $error = oci_error($statement);
+        $_SESSION['error'] = $error['message']; // Display Oracle error message
+    }
+    oci_close($conn);
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,20 +80,6 @@
     <link rel="stylesheet" type="text/css" href="home.css">
 </head>
 <body>
-<?php
-// Handle form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
-    $productName = $_POST['productName'];
-    // Retrieve more form fields as needed
-    
-    // Perform database operations or any other backend logic here
-    
-    // Redirect back to the main page or show a success message
-    header("Location: index.php"); // Change "index.php" to your main page
-    exit();
-}
-?>
 
     <div class="container mx-auto py-8 px-4 " id="add-product">
         <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
@@ -62,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="text" name="productDes" id="productDes" id="productName"  class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md placeholder-gray-400 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-300 bg-gray-100 hover:bg-gray-200">
                     </div>
                     <div class="flex justify-end">
-                        <button type="submit" class="bg-indigo-600 hover:bg-gradient bg-gradient text-white px-4 py-2 rounded-md shadow-md transition duration-300">Add Product</button>
+                        <button type="submit" name="add-product" class="bg-indigo-600 hover:bg-gradient bg-gradient text-white px-4 py-2 rounded-md shadow-md transition duration-300">Add Product</button>
                     </div>
                    
                     

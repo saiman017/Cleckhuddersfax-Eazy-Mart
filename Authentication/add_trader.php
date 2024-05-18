@@ -1,11 +1,14 @@
 <?php
-$conn = oci_connect('saiman', 'Stha_12', '//localhost/xe');
+session_start();
+
+$conn = oci_connect('saiman', 'Stha_12', '127.0.0.1:1521/xe');
 if (!$conn) {
     $m = oci_error();
-    echo $m['message'], "\n";
+    $_SESSION['error']=$m['message'];
     exit;
 } else {
-    print "Connected to Oracle!";
+    // print "Connected to Oracle!";
+    $_SESSION['notification'] = "Connected to Oracle!";
 }
 
 
@@ -38,23 +41,27 @@ if(isset($_POST['submit']))
         } elseif ($number === $row['Contact_Number']) {
             $message = "Contact number already exists. Please use a different one.";
         }
-        echo '<script>alert("' . $message . '")</script>';
+        // echo '<script>alert("' . $message . '")</script>';
+        $_SESSION['error'] = $message;
         exit();
     }
 
     // password validation
     if ($password !== $cpassword) {
-        echo '<script>alert("Password and Confirm Password do not match. Please try again.")</script>';
+        // echo '<script>alert("Password and Confirm Password do not match. Please try again.")</script>';
+        $_SESSION['error'] = "Password and Confirm Password do not match. Please try again.";
         exit();  
     }
     
     if (strlen($password) < 8 || strlen($password) > 32 ) {
-        echo '<script>alert("Password must be at least 8 or less than 32 characters long.")</script>';
+        // echo '<script>alert("Password must be at least 8 or less than 32 characters long.")</script>';
+        $_SESSION['error'] = "Password must be at least 8 or less than 32 characters long.";
         exit();
     }
 
     if (!preg_match('/[!@#$%^&*()\-_=+]/', $password)) {
-        echo '<script>alert("Password must contain at least one special charcater.")</script>';
+        // echo '<script>alert("Password must contain at least one special charcater.")</script>';
+        $_SESSION['error'] = "Password must contain at least one special charcater.";
         exit();
     }
     
@@ -73,7 +80,8 @@ if(isset($_POST['submit']))
     }
     else {
         $error = oci_error($statement);
-        echo "Error: " . $error['message']; // Display Oracle error message
+        // echo "Error: " . $error['message']; // Display Oracle error message
+        $_SESSION[''] = $error['message'];
     }
 
     oci_close($conn);

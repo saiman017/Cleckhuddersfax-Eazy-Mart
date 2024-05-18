@@ -1,3 +1,9 @@
+
+<?php
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,17 +28,49 @@
             </div>
                 <ul class="nav-link">
                     <li class="nav-link-item">
-                        <a href="../Login/customer_signin.php"><img src="../assets/images/icons/person.png" alt="" id="topIcons">Login<i class="fa-solid fa-angle-down"></i></a>
+
+                    <?php if (!isset($_SESSION['user'])): ?>
+                        <a href="../Login/customer_signin.php"><img src="../assets/images/icons/person.png" alt=""
+                                id="topIcons"> Login <i class="fa-solid fa-angle-down"></i></a>
                         <ul class="drop-menu">
-                            <li><a class="dropdown-item" href="../Sign Up/customer_signup.php"><span id="head-signup">New Customer?</span>  Sign Up</a></li>
-                            <li><a class="dropdown-item" href="../Login/customer_signin.php">Login</a></li>
-                            <li><a class="dropdown-item" href="../Customer/customer_profile.php">My Profile</a></li>
-                            <li><a class="dropdown-item" href="../Customer/customer_order.php">My Orders</a></li>
-                            <li><a class="dropdown-item" href="../Customer/Wishlist.php">My Wishlist</a></li>
+                            <?php else: ?>
+                            <a href="../Login/customer_signin.php"><img src="../assets/images/icons/person.png" alt=""
+                                    id="topIcons"> Menu <i class="fa-solid fa-angle-down"></i></a>
+                            <ul class="drop-menu">
+                                <?php endif; ?>
+
+                                <?php if(!isset($_SESSION['user'])): ?>
+                                <li><a class="dropdown-item" href="../Sign Up/customer_signup.php"><span
+                                            id="head-signup">New Customer?</span> Sign Up</a></li>
+                                <li><a class="dropdown-item" href="../Login/customer_signin.php">Login</a></li>
+
+                                <?php else: ?>
+
+                                <li><a class="dropdown-item" href="../Customer/customer_profile.php">My
+                                        Profile</a>
+                                </li>
+                                <li><a class="dropdown-item" href="../Customer/customer_order.php">My Orders</a>
+                                </li>
+                                <li><a class="dropdown-item" href="../Customer/#">My Wishlist</a></li>
+                                <li><a class="dropdown-item" href="../Authentication/logout.php">Logout</a></li>
+                                <?php endif; ?>
+
+
+
+
+
+
                         </ul>
                     </li>
                     <li class="nav-link-item"><a href="../Customer/Customer_cart.php"><img src="../assets/images/icons/shopping-cart.png" id="topIcons" alt="">Cart</a></li>
-                    <li class="nav-link-item"><a href="../Sign Up/trader_signup.php"><img src="../assets/images/icons/store.png"  id="topIcons" alt="">Become a trader</a></li>
+
+                    
+    <li class="nav-link-item"><a href="../Sign Up/trader_signup.php"><img src="../assets/images/icons/store.png" id="topIcons" alt="">Become a trader</a></li>
+
+
+
+
+
                 </ul>
             </div>
 

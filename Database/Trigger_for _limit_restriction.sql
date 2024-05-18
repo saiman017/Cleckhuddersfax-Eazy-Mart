@@ -117,7 +117,7 @@ BEGIN
    INSERT INTO Cart (Quantity, Total_Price, Customer_ID) VALUES (0, 0, :NEW.Customer_ID);
 END;
 /
-
+DROP TRIGGER trig_limit_cart_quantity;
 CREATE OR REPLACE TRIGGER trig_limit_cart_quantity
 BEFORE INSERT OR UPDATE ON Cart
 FOR EACH ROW
@@ -128,6 +128,18 @@ BEGIN
 END;
 /
 
+DROP TRIGGER update_product_status_trigger;
+CREATE OR REPLACE TRIGGER update_product_status_trigger
+BEFORE INSERT OR UPDATE ON Product
+FOR EACH ROW
+BEGIN
+    IF :NEW.Stock_Available > 0 THEN
+        :NEW.Product_Status := 'In stock';
+    ELSE
+        :NEW.Product_Status := 'Out of stock';
+    END IF;
+END;
+/
 
 
 

@@ -1,10 +1,86 @@
+<?php
+session_start(); // Start the session
+
+require_once '../middlewares/checkAuthentication.php';
+
+// Check if the user is logged in
+checkIfUserIsLoggedIn();
+
+// Establish connection to Oracle database
+$conn = oci_connect('saiman', 'Stha_12', '//localhost/xe');
+if (!$conn) {
+    $m = oci_error();
+    $_SESSION['error'] = $m['message'];
+    exit();
+} else {
+    $_SESSION['notification'] = "Connected to Oracle!";
+}
+
+
+// Fetch the shop details
+$traderid = $_SESSION['user']['TRADER_ID'];
+$query_shop = "SELECT * FROM Shop WHERE Trader_id = '$traderid'";
+$statement_shop = oci_parse($conn, $query_shop);
+oci_execute($statement_shop);
+
+// Fetch the shop details
+$row_shop = oci_fetch_assoc($statement_shop);
+$shopId = $row_shop['SHOP_ID'];
+
+if (isset($_POST['addproduct'])) {
+    $productName = $_POST['productName'];
+    $productDescription = $_POST['productDes'];
+    $productPrice = $_POST['productPrice'];
+    $productStock = $_POST['productStock'];
+    $minOrder = $_POST['minOrder'];
+    $maxOrder = $_POST['maxOrder'];
+    $productPhoto = $_POST['productPhoto'];
+    $allergy = $_POST['allergy'];
+    $discount = $_POST['discount'];
+    $categories = $_POST['category'];
+
+    // Check if product name already exists
+    $query_check = "SELECT PRODUCT_NAME FROM Product WHERE PRODUCT_NAME = '$productName'";
+    $statement_check = oci_parse($conn, $query_check);
+    oci_execute($statement_check);
+    $row = oci_fetch_assoc($statement_check);
+
+    if ($row !== false) {
+        $_SESSION['error'] = "Product name already exists. Please use a different name.";
+        header("Location: view_product_detail.php");
+        exit();
+    }
+
+    // Insert new product into database
+    $query = "INSERT INTO Product (PRODUCT_NAME, DESCRIPTION, PRICE, STOCK_AVAILABLE, MIN_ORDER, MAX_ORDER, ALLERGY, PRODUCT_IMAGE, SHOP_ID, DISCOUNT_ID, CATEGORY_ID) 
+          VALUES ('$productName', '$productDescription', '$productPrice', '$productStock', '$minOrder', '$maxOrder', '$allergy', '$productPhoto', '$shopId', '$discount', '$categories')";
+    $statement = oci_parse($conn, $query);
+    $result = oci_execute($statement);
+
+    if ($result) {
+        oci_commit($conn);
+        header("Location: view_product_detail.php");
+        exit();
+    } else {
+        $error = oci_error($statement);
+        $_SESSION['error'] = $error['message'];
+        exit();
+    }
+}
+
+oci_close($conn); // Close database connection
+?>
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Trader Dashboard</title>
+    <title>View Shop Details</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
         <!-- Include Tailwind CSS -->
@@ -26,7 +102,7 @@
 <div class="profile-image">
   <img src="../assets/images/Shop/butcher 1.jpg" alt="Profile Image">
 </div>
-<div class="profile-name">Profile</div>
+<div class="profile-name"></div>
 </div>
 </header>
 
@@ -56,13 +132,13 @@
 </ul>
 </li>
 <li class="sidebar-list-item">
-  <a href="./trader_profile.php">
+  <a href="trader_profile.php">
    <img src="#" alt=""> My Profile
   </a>
 </li>
 <li class="sidebar-list-item">
-  <a href="#">
-   <img src="/trader/view_product_detail.php" alt=""> Product Detail
+  <a href="./view_product_detail.php">
+   <img src="view_product_detail.php" alt=""> Product Detail
   </a>
 </li>
 <li class="sidebar-list-item">
@@ -148,7 +224,7 @@
             productFormContainer.innerHTML = `
                 <div id="productAddForm">
                     <h2 class="text-xl font-semibold mb-4">Add Product</h2>
-                    <form class="space-y-4">
+                    <form class="space-y-4" method="POST">
                         <div>
                             <label for="productName" class="block text-sm font-medium text-gray-700">Product Name</label>
                             <input type="text" name="productName" id="productName" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md placeholder-gray-400 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-300 bg-gray-100 hover:bg-gray-200">
@@ -174,6 +250,45 @@
                             </div>
                         </div>
                         <div>
+                        <div>
+            <label for="productName" class="block text-sm font-medium text-gray-700">Product Name</label>
+            <input type="text" name="productName" id="productName" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md placeholder-gray-400 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-300 bg-gray-100 hover:bg-gray-200">
+        </div>
+        <div>
+                <label for="discount" class="block text-sm font-medium text-gray-700">Discount</label>
+                <select name="discount" id="discount" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md placeholder-gray-400 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-300 bg-gray-100 hover:bg-gray-200">
+                    <option value="0">No discount</option>
+                    <?php
+    // Include the PHP code for fetching discounts here
+    $query_discounts = "SELECT * FROM Discount";
+    $statement_discounts = oci_parse($conn, $query_discounts);
+    oci_execute($statement_discounts);
+    while ($row_discount = oci_fetch_assoc($statement_discounts)) {
+        echo '<option value="' . $row_discount['DISCOUNT_ID'] . '">' . $row_discount['Discount_Percent'] . '</option>';
+    }
+?>
+                </select>
+            </div>
+            <div>
+                <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+                <select name="category" id="category" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md placeholder-gray-400 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-300 bg-gray-100 hover:bg-gray-200">
+                    <option value="0">Select category</option>
+                    <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+                <select name="category" id="category" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md placeholder-gray-400 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-300 bg-gray-100 hover:bg-gray-200">
+                    <option value="0">Select category</option>
+                    <?php
+                            // Include the PHP code for fetching categories here
+                            $query_categories = "SELECT * FROM Category";
+                            $statement_categories = oci_parse($conn, $query_categories);
+                            oci_execute($statement_categories);
+                            while ($row_category = oci_fetch_assoc($statement_categories)) {
+                                echo '<option value="' . $row_category['CATEGORY_ID'] . '">' . $row_category['CATEGORY_TYPE'] . '</option>';
+                            }
+                            ?>
+    
+                </select>
+            </div>
+                        <div>
                             <label for="productPhoto" class="block text-sm font-medium text-gray-700">Photo</label>
                             <input type="file" name="productPhoto" id="productPhoto" accept="image/*" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md placeholder-gray-400 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-300 bg-gray-100 hover:bg-gray-200">
                         </div>
@@ -181,8 +296,12 @@
                             <label for="productDes" class="block text-sm font-medium text-gray-700">Description</label>
                             <input type="text" name="productDes" id="productDes" id="productDes" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md placeholder-gray-400 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-300 bg-gray-100 hover:bg-gray-200">
                         </div>
+                        <div>
+                            <label for="allergy" class="block text-sm font-medium text-gray-700">Allergy Information</label>
+                            <input type="text" name="allergy" id="allergy" id="allergy" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md placeholder-gray-400 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-300 bg-gray-100 hover:bg-gray-200">
+                        </div>
                         <div class="flex justify-end">
-                            <button type="submit" class="bg-indigo-600 hover:bg-gradient bg-gradient text-white px-4 py-2 rounded-md shadow-md transition duration-300">Add Product</button>
+                            <button type="submit" name="addproduct" class="bg-indigo-600 hover:bg-gradient bg-gradient text-white px-4 py-2 rounded-md shadow-md transition duration-300">Add Product</button>
                         </div>
                     </form>
                 </div>

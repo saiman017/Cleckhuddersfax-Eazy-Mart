@@ -209,9 +209,8 @@
 
 }
 
-
 .wapper2 .nav-links li:hover .drop-menu{
-    top: 65px;
+    top: 55px;
     transition: all 0.3s ease;
     opacity: 1;
     visibility: visible;
@@ -220,7 +219,6 @@
 .wapper2 .nav-links .drop-menu a{
     width:100%;
     display: block;
-    padding: 0 20px;
     font-weight: 400;
     border-radius: 0px;
 }

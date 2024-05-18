@@ -23,7 +23,6 @@ CREATE TABLE Trader(
 );
 
 
-
 DROP TABLE Shop CASCADE CONSTRAINTS;
 CREATE TABLE Shop(
     Shop_ID NUMBER(10) PRIMARY KEY,
@@ -31,8 +30,12 @@ CREATE TABLE Shop(
     Shop_Location VARCHAR2(200) NOT NULL,
     Contact_Number NUMBER(20) NOT NULL  UNIQUE,
     Email VARCHAR2(100) NOT NULL  UNIQUE,
+    Product_Image BLOB,
     Trader_ID NUMBER(10)
 );
+--  foreign key in Shop
+ALTER TABLE Shop ADD FOREIGN KEY (Trader_ID) REFERENCES Trader(Trader_ID);
+
 
 DROP TABLE Customer CASCADE CONSTRAINTS;
 CREATE TABLE Customer(
@@ -72,12 +75,22 @@ CREATE TABLE Product(
     Product_Name VARCHAR2(100) NOT NULL UNIQUE,
     Price VARCHAR2(10) NOT NULL,
     Stock_Available NUMBER(20) NOT NULL,
-    Product_Status VARCHAR2(100) CHECK( Product_Status IN('In stock', 'out of stock','s')) NOT NULL,
+    Product_Status VARCHAR2(100) CHECK( Product_Status IN('In stock', 'out of stock')) NOT NULL,
     Min_Order NUMBER(20) NOT NULL,
     Max_Order NUMBER(20) NOT NULL,
-    Product_Image BLOB NOT NULL,
-    Shop_ID NUMBER(10) 
+    Allergy VARCHAR2(100) NOT NULL,
+    Description VARCHAR2(200) NOT NULL,
+    Product_Image BLOB,
+    Shop_ID	NUMBER(10),
+	Category_ID	NUMBER(10),
+	Discount_ID	NUMBER(10)
 );
+
+-- foreign key in Product
+ALTER TABLE Product ADD FOREIGN KEY (Shop_ID) REFERENCES Shop(Shop_ID);
+ALTER TABLE Product ADD FOREIGN KEY (Category_ID) REFERENCES Category(Category_ID);
+ALTER TABLE Product ADD FOREIGN KEY (Discount_ID) REFERENCES Discount(Discount_ID);
+
 
 DROP TABLE Wishlist CASCADE CONSTRAINTS;
 CREATE TABLE Wishlist(
@@ -86,14 +99,15 @@ CREATE TABLE Wishlist(
     Product_ID NUMBER(10),
     Customer_ID NUMBER(10) 
 );
+-- foreign key in Wishlist
+ALTER TABLE Wishlist ADD FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID);
+ALTER TABLE Wishlist ADD FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID);
 
 DROP TABLE Discount CASCADE CONSTRAINTS;
 CREATE TABLE Discount(
     Discount_ID NUMBER(10) PRIMARY KEY,
-    Discount_Percent VARCHAR2(100) NOT NULL,
-    Valid_From DATE NOT NULL,
-    Valid_To DATE NOT NULL, 
-    Product_ID NUMBER(10)
+    Discount_Percent VARCHAR2(100) NOT NULL
+ 
 );
 
 DROP TABLE Review CASCADE CONSTRAINTS;
@@ -105,6 +119,11 @@ CREATE TABLE Review(
     Customer_ID NUMBER(10) ,
     Product_ID NUMBER(10) 
 );
+-- -foreign key in Review
+ALTER TABLE Review ADD FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID);
+ALTER TABLE Review ADD FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID);
+
+
 
 DROP TABLE Cart CASCADE CONSTRAINTS;
 CREATE TABLE Cart(
@@ -113,13 +132,20 @@ CREATE TABLE Cart(
     Total_Price DECIMAL(5,2) NOT NULL,
     Customer_ID NUMBER(10) 
 );
+-- foreign key in Cart
+ALTER TABLE Cart ADD FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID);
 
 DROP TABLE Cart_Item CASCADE CONSTRAINTS;
 CREATE TABLE Cart_Item(
     Cart_Item_ID NUMBER(10) PRIMARY KEY,
+    Quantity NUMBER(20) NOT NULL,
     Product_ID NUMBER(10),
     Cart_ID NUMBER(10) 
 );
+-- foreign key in Cart_Item
+ALTER TABLE Cart_Item ADD FOREIGN KEY (Cart_ID) REFERENCES Cart(Cart_ID);
+ALTER TABLE Cart_Item ADD FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID);
+
 
 DROP TABLE Order_Detail CASCADE CONSTRAINTS;
 CREATE TABLE Order_Detail(
@@ -131,6 +157,12 @@ CREATE TABLE Order_Detail(
     Cart_ID NUMBER(10) ,
     Customer_ID NUMBER(10) 
 );
+-- Foreign  key in order detail
+ALTER TABLE Order_Detail ADD FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID);
+ALTER TABLE Order_Detail ADD FOREIGN KEY (Cart_ID) REFERENCES Cart(Cart_ID);
+ALTER TABLE Order_Detail ADD FOREIGN KEY (Collection_ID) REFERENCES Collection_Slot(Collection_ID);
+
+
 
 DROP TABLE Order_Product CASCADE CONSTRAINTS;
 CREATE TABLE Order_Product(
@@ -139,6 +171,11 @@ CREATE TABLE Order_Product(
     Order_ID NUMBER(10),
     Quantity Number(10)
 );
+-- foreign key in Order_Product
+ALTER TABLE Order_Product ADD FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID);
+ALTER TABLE Order_Product ADD FOREIGN KEY (Order_ID) REFERENCES Order_Detail(Order_ID);
+
+
 
 DROP TABLE Report CASCADE CONSTRAINTS;
 CREATE TABLE Report(
@@ -149,6 +186,11 @@ CREATE TABLE Report(
     Product_ID NUMBER(10) ,
     Trader_ID NUMBER(10) 
 );
+-- foreign key in Report
+ALTER TABLE Report ADD FOREIGN KEY (Product_ID) REFERENCES Order_Detail(Order_ID);
+ALTER TABLE Report ADD FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID);
+ALTER TABLE Report ADD FOREIGN KEY (Trader_ID) REFERENCES Trader(Trader_ID);
+
 
 DROP TABLE Payment CASCADE CONSTRAINTS;
 CREATE TABLE Payment(
@@ -159,54 +201,27 @@ CREATE TABLE Payment(
     Customer_ID NUMBER(10) ,
     Order_ID NUMBER(10)
 );
-
-
-
---  foreign key in Shop
-ALTER TABLE Shop ADD FOREIGN KEY (Trader_ID) REFERENCES Trader(Trader_ID);
-
--- foreign key in Product
-ALTER TABLE Product ADD FOREIGN KEY (Shop_ID) REFERENCES Shop(Shop_ID);
-
--- foreign key in Wishlist
-ALTER TABLE Wishlist ADD FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID);
-ALTER TABLE Wishlist ADD FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID);
-
--- foreign key in Cart
-ALTER TABLE Cart ADD FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID);
-
--- foreign key in Cart_Item
-
-ALTER TABLE Cart_Item ADD FOREIGN KEY (Cart_ID) REFERENCES Cart(Cart_ID);
-ALTER TABLE Cart_Item ADD FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID);
-
-
--- Foreign  key in order detail
-
-ALTER TABLE Order_Detail ADD FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID);
-ALTER TABLE Order_Detail ADD FOREIGN KEY (Cart_ID) REFERENCES Cart(Cart_ID);
-ALTER TABLE Order_Detail ADD FOREIGN KEY (Collection_ID) REFERENCES Collection_Slot(Collection_ID);
-
--- foreign key in Order_Product
-
-ALTER TABLE Order_Product ADD FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID);
-ALTER TABLE Order_Product ADD FOREIGN KEY (Order_ID) REFERENCES Order_Detail(Order_ID);
-
--- foreign key in Report
-
-ALTER TABLE Report ADD FOREIGN KEY (Product_ID) REFERENCES Order_Detail(Order_ID);
-ALTER TABLE Report ADD FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID);
-ALTER TABLE Report ADD FOREIGN KEY (Trader_ID) REFERENCES Trader(Trader_ID);
-
 -- foreign key in Payment
 ALTER TABLE Payment ADD FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID);
 ALTER TABLE Payment ADD FOREIGN KEY (Order_ID) REFERENCES Order_Detail(Order_ID);
 
--- foreign key in discount
 
-ALTER TABLE Discount ADD FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID);
 
--- -foreign key in Review
 
-ALTER TABLE Review ADD FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID);
-ALTER TABLE Review ADD FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
